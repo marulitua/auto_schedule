@@ -56,6 +56,8 @@ return array(
 			'username' => 'root',
 			'password' => '',
 			'charset' => 'utf8',
+                        'enableProfiling'=>true,
+                        'enableParamLogging'=>true,
 		),
 		
 		'errorHandler'=>array(
@@ -66,7 +68,8 @@ return array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
 				array(
-					'class'=>'CFileLogRoute',
+					//'class'=>'CFileLogRoute',
+                                        'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
 					'levels'=>'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
