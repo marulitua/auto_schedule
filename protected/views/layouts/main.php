@@ -90,11 +90,11 @@
                                 'items' => array(
                                     array(
                                         'label' => '1. Lihat Jadwal',
-                                        'url' => Yii::app()->createUrl('trxKurikulum/admin'),
+                                        'url' => Yii::app()->createUrl('schedule'),
                                     ),
                                     array(
                                         'label' => '2. Generate Jadwal',
-                                        'url' => array('trxDosen/admin'),
+                                        'url' => Yii::app()->createUrl('generate'),
                                     ),
                                 ),
                             ),
@@ -121,7 +121,7 @@
                                 'url' => 'javaScript:void(0);',
                                 'items' => array(      
                                     array('label' => 'Penjadwalan Help',
-                                        'url' => array('site/help', 'view' => 'help'),
+                                        'url' => Yii::app()->createUrl('site/help'),
                                     ),
                                     array('label' => 'About',
                                         'url' => array('/site/page', 'view' => 'about'),
