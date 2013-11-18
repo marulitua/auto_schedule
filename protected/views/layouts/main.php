@@ -83,81 +83,57 @@
                             array(
                                 'label' => 'Home',
                                 'url' => Yii::app()->baseUrl . '/index.php',
-                                'visible' => !Yii::app()->user->isGuest,
                             ),
                             array(
-                                'label' => 'Jadwal Perkuliahan',
-                                'url' => Yii::app()->createUrl('/jadwalHasil/admin'),
-                                'visible' => !Yii::app()->user->isGuest,
-                            ),
-                            array(
-                                'label' => 'Constraints',
+                                'label' => 'Jadwal',
                                 'url' => 'JavaScript:void(0);',
-                                'visible' => !Yii::app()->user->isGuest,
                                 'items' => array(
                                     array(
-                                        'label' => '1. Kurikulum',
+                                        'label' => '1. Lihat Jadwal',
                                         'url' => Yii::app()->createUrl('trxKurikulum/admin'),
                                     ),
                                     array(
-                                        'label' => '2. Dosen',
+                                        'label' => '2. Generate Jadwal',
                                         'url' => array('trxDosen/admin'),
                                     ),
                                 ),
                             ),
                             array(
-                                'label' => 'Pengaturan',
+                                'label' => 'Data',
                                 'url' => 'JavaScript:void(0);',
-                                'visible' => !Yii::app()->user->isGuest,
                                 'items' => array(
-                                    array(
-                                        'label' => '1. Periode Perkuliahan',
-                                        'url' => Yii::app()->createUrl('periode/admin'),
-                                    ),
-                                    array(
-                                        'label' => '2. Mata Kuliah',
-                                        'url' => Yii::app()->createUrl('mataKuliah/admin'),
-                                    ),
-                                    array(
-                                        'label' => '3. Dosen',
-                                        'url' => Yii::app()->createUrl('dosen/admin'),
-                                    ),
-                                    array(
-                                        'label' => '4. Ruang Kelas',
-                                        'url' => Yii::app()->createUrl('ruangKelas/admin'),
-                                    ),
+                                        array(
+                                            'label' => '1. Mata Kuliah',
+                                            'url' => Yii::app()->createUrl('mataKuliah/admin'),
+                                        ),
+                                        array(
+                                            'label' => '2. Dosen',
+                                            'url' => Yii::app()->createUrl('dosen/admin'),
+                                        ),
+                                        array(
+                                            'label' => '3. Ruang Kelas',
+                                            'url' => Yii::app()->createUrl('ruangKelas/admin'),
+                                        ),
                                 ),
                             ),
                             array(
-                                'label' => 'Fakultas & Program Studi',
-                                'url' => 'JavaScript:void(0);',
-                                'visible' => !Yii::app()->user->isGuest,
-                                'items' => array(
-                                    array(
-                                        'label' => 'Fakultas',
-                                        'url' => Yii::app()->createUrl('fakultas/admin'),
+                                'label' => 'Help',
+                                'url' => 'javaScript:void(0);',
+                                'items' => array(      
+                                    array('label' => 'Penjadwalan Help',
+                                        'url' => array('site/help', 'view' => 'help'),
                                     ),
-                                    array(
-                                        'label' => 'Program Studi',
-                                        'url' => Yii::app()->createUrl('prodi/admin'),
+                                    array('label' => 'About',
+                                        'url' => array('/site/page', 'view' => 'about'),
                                     ),
                                 ),
                             ),
-                            array('label' => 'About',
-                                'url' => array('/site/page', 'view' => 'about'),
-                                'visible' => !Yii::app()->user->isGuest
-                            ),
-                            array('label' => 'Help',
-                                'url' => Yii::app()->createUrl('site/help'),
-                                'visible' => !Yii::app()->user->isGuest
-                            ),
                             array('label' => 'Logout (' . Yii::app()->user->name . ')',
                                 'url' => array('/site/logout'),
-                                'visible' => !Yii::app()->user->isGuest
+                                //'visible' => !Yii::app()->user->isGuest
                             ),
                         )
-                            )
-                    );
+                    ));
                     ?>
 
 
