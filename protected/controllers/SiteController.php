@@ -29,7 +29,10 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		if (Yii::app()->user->isGuest)
+                    $this->actionLogin();
+                else
+                    $this->render('index');
 	}
 
 	/**
@@ -75,28 +78,31 @@ class SiteController extends Controller
 	/**
 	 * Displays the login page
 	 */
-	public function actionLogin()
-	{
-		$model=new LoginForm;
+	public function actionLogin() {
+            $model = new LoginForm;
 
-		// if it is ajax validation request
-		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
+            // if it is ajax validation request
+            if (isset($_POST['ajax']) && $_POST['ajax'] === 'login-form') {
+                echo CActiveForm::validate($model);
+                Yii::app()->end();
+            }
 
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-		// display the login form
-		$this->render('login',array('model'=>$model));
-	}
+            // collect user input data
+            if (isset($_POST['LoginForm'])) {
+                $model->attributes = $_POST['LoginForm'];
+                // validate user input and redirect to the previous page if valid
+                if ($model->validate() && $model->login())
+                    $this->redirect(Yii::app()->user->returnUrl);
+            }
+            // display the login form
+            //$this->layout = '//layouts/main';
+            //echo '$this->layout = '.$this->layout;
+            //echo '<br><pre>';
+            $this->layout = 'login';
+            //var_dump($content);
+            //echo '</pre><br>';
+            $this->render('login', array('model' => $model));
+        }
 
 	/**
 	 * Logs out the current user and redirect to homepage.
