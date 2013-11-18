@@ -40,18 +40,32 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php
+      //$this->widget('zii.widgets.grid.CGridView', array(
+      $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'mata-kuliah-grid',
+        'type'=>'striped bordered condensed',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+        'template'=>"{items}{summary}{pager}",
 	'columns'=>array(
-		'id',
+		//'id',
+                array(
+                  'header' => 'No',
+                  'value'=>'$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',                   
+                ),
 		'mata_kuliah',
 		'mata_kuliah_code',
-		'praktek',
+		//'praktek',
+                array(
+                    'name' => 'praktek',
+                    'value' => '$data->praktek == \'1\' ? \'Praktek\' : \'Teori\' ', 
+//                    /'value' => '$data->praktek'  
+                ),
 		'sks',
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
+                        'htmlOptions'=>array('style'=>'width: 100px'),
 		),
 	),
 )); ?>

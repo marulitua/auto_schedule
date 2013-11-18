@@ -95,4 +95,5 @@ return array(
             'class' => 'application.components.RequireLogin'
         )
     ),
+    'language'=>'id',
 );

@@ -96,6 +96,9 @@ class MataKuliah extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination' => array(
+                            'pageSize' => 20,
+                        ),
 		));
 	}
 
@@ -109,4 +112,9 @@ class MataKuliah extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function deleteCourse() {
+                $code = $this->praktek == '1' ? substr($this->mata_kuliah_code, 0, -1) : $this->mata_kuliah_code;
+                return Yii::app()->db->createCommand("delete from mata_kuliah where mata_kuliah_code like '$code%'")->execute();
+        }
 }
