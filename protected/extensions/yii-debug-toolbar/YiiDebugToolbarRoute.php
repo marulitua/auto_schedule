@@ -181,10 +181,13 @@ class YiiDebugToolbarRoute extends CLogRoute
 
     protected function processLogs($logs)
     {
-        $this->_endTime = microtime(true);
-        // disable log route based on white list
-        $this->enabled = $this->enabled && $this->checkContentTypeWhitelist();
-        $this->enabled && $this->getToolbarWidget()->run();
+        // don't process until user login
+        if (!Yii::app()->user->isGuest){
+            $this->_endTime = microtime(true);
+            // disable log route based on white list
+            $this->enabled = $this->enabled && $this->checkContentTypeWhitelist();
+            $this->enabled && $this->getToolbarWidget()->run();
+        }
     }
 
     private function checkContentTypeWhitelist()
