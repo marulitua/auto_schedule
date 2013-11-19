@@ -8,7 +8,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List MataKuliah', 'url'=>array('index')),
+	array('label'=>'Daftar Mata Kuliah', 'url'=>array('index')),
 	array('label'=>'Manage MataKuliah', 'url'=>array('admin')),
 );
 ?>

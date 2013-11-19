@@ -59,7 +59,10 @@ Yii::app()->clientScript->registerScript('check', "
         
 	<div class="row">
 		<?php echo $form->labelEx($model,'praktek'); ?>
-		<?php echo $form->dropDownList($model, 'praktek', array(' '=>'', 0 => 'Teori', 1 => 'Praktek')); ?>
+		<?php if(isset($update)) 
+                        echo $form->dropDownList($model, 'praktek', array(' '=>'', 0 => 'Teori', 1 => 'Praktek'), array("disabled"=>"disabled"));
+                      else
+                        echo $form->dropDownList($model, 'praktek', array(' '=>'', 0 => 'Teori', 1 => 'Praktek')); ?>
 		<?php echo $form->error($model,'praktek'); ?>
 	</div>
 

@@ -67,12 +67,29 @@ class MataKuliahController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['MataKuliah']))
-		{
-			$model->attributes=$_POST['MataKuliah'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+		if (isset($_POST['MataKuliah'])) {
+                    $model->attributes = $_POST['MataKuliah'];
+
+                    if ($model->praktek == 1) {
+                        $model2 = new MataKuliah;
+                        $model2->attributes = $model->attributes;
+                        $model2->mata_kuliah = $model2->mata_kuliah." (Praktek)";
+                        $model2->mata_kuliah_code = $model2->mata_kuliah_code."P";
+                        $model2->sks = $_POST['MataKuliah']['sksPraktek'];
+
+                        //belong to teori
+                        $model->praktek = 0;
+                        $model->sks = $_POST['MataKuliah']['sksTeori'];
+
+                        if ($model->save() && $model2->save())
+                            //$this->redirect(array('view', 'id' => $model->id));
+                            $this->redirect(array('admin'));
+                    } 
+                    else
+                    if ($model->save())
+                        //$this->redirect(array('view', 'id' => $model->id));
+                        $this->redirect(array('admin'));
+                }
 
 		$this->render('create',array(
 			'model'=>$model,
