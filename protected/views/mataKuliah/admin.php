@@ -54,13 +54,15 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                   'header' => 'No',
                   'value'=>'$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',                   
                 ),
-		'mata_kuliah',
+		array(
+                    'name' => 'mata_kuliah',
+                    'value' => 'ucwords($data->mata_kuliah)',
+                ),
 		'mata_kuliah_code',
-		//'praktek',
                 array(
                     'name' => 'praktek',
                     'value' => '$data->praktek == \'1\' ? \'Praktek\' : \'Teori\' ', 
-//                    /'value' => '$data->praktek'  
+                    'filter'=>array(0=>'Teori', 1=>'Praktek'),
                 ),
 		'sks',
 		array(

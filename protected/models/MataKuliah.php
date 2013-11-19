@@ -34,7 +34,7 @@ class MataKuliah extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('mata_kuliah, mata_kuliah_code, praktek, sks', 'required'),
-			array('praktek, sks', 'numerical', 'integerOnly'=>true),
+			array('sks', 'numerical', 'integerOnly'=>true),
 			array('mata_kuliah, mata_kuliah_code', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -64,8 +64,8 @@ class MataKuliah extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'mata_kuliah' => 'Mata Kuliah',
-			'mata_kuliah_code' => 'Mata Kuliah Code',
-			'praktek' => 'Praktek',
+			'mata_kuliah_code' => 'Kode Mata Kuliah',
+			'praktek' => 'Teori / Praktek',
 			'sks' => 'Sks',
 		);
 	}
