@@ -35,6 +35,7 @@ class MataKuliah extends CActiveRecord
 		return array(
 			array('mata_kuliah, mata_kuliah_code, praktek, sks', 'required'),
 			array('sks', 'numerical', 'integerOnly'=>true),
+                        array('mata_kuliah_code', 'unique'),
 			array('mata_kuliah, mata_kuliah_code', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

@@ -3,7 +3,7 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Mata Kuliahs',
+	'Mata Kuliah',
 );
 
 $this->menu=array(

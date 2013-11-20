@@ -33,6 +33,7 @@ class Dosen extends CActiveRecord
 		return array(
 			array('full_name, NI', 'required'),
 			array('full_name, NI', 'length', 'max'=>50),
+                        array('NI', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, full_name, NI', 'safe', 'on'=>'search'),
@@ -60,7 +61,7 @@ class Dosen extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'full_name' => 'Full Name',
+			'full_name' => 'Nama Lengkap',
 			'NI' => 'Ni',
 		);
 	}
@@ -89,6 +90,9 @@ class Dosen extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination' => array(
+                                'pageSize' => 20,
+                            ),
 		));
 	}
 

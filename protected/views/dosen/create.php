@@ -3,16 +3,16 @@
 /* @var $model Dosen */
 
 $this->breadcrumbs=array(
-	'Dosens'=>array('index'),
-	'Create',
+	'Dosen'=>array('index'),
+	'Tambah',
 );
 
 $this->menu=array(
-	array('label'=>'List Dosen', 'url'=>array('index')),
+	array('label'=>'Daftar Dosen', 'url'=>array('index')),
 	array('label'=>'Manage Dosen', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Dosen</h1>
+<h1>Tambah Dosen</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

@@ -3,11 +3,11 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Dosens',
+	'Dosen',
 );
 
 $this->menu=array(
-	array('label'=>'Create Dosen', 'url'=>array('create')),
+	array('label'=>'Tambah Dosen', 'url'=>array('create')),
 	array('label'=>'Manage Dosen', 'url'=>array('admin')),
 );
 ?>

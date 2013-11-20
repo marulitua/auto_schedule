@@ -3,7 +3,7 @@
 /* @var $model MataKuliah */
 
 $this->breadcrumbs=array(
-	'Mata Kuliahs'=>array('index'),
+	'Mata Kuliah'=>array('admin'),
 	'Create',
 );
 
@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create MataKuliah</h1>
+<h1>Tambah Mata Kuliah</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

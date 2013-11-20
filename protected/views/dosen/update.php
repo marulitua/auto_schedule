@@ -3,14 +3,14 @@
 /* @var $model Dosen */
 
 $this->breadcrumbs=array(
-	'Dosens'=>array('index'),
+	'Dosen'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List Dosen', 'url'=>array('index')),
-	array('label'=>'Create Dosen', 'url'=>array('create')),
+	array('label'=>'Daftar Dosen', 'url'=>array('index')),
+	array('label'=>'Tambah Dosen', 'url'=>array('create')),
 	array('label'=>'View Dosen', 'url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'Manage Dosen', 'url'=>array('admin')),
 );
