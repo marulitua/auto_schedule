@@ -3,13 +3,13 @@
 /* @var $model RuangKelas */
 
 $this->breadcrumbs=array(
-	'Ruang Kelases'=>array('index'),
-	'Create',
+	'Ruang Kelas'=>array('index'),
+	'Tambah',
 );
 
 $this->menu=array(
-	array('label'=>'List RuangKelas', 'url'=>array('index')),
-	array('label'=>'Manage RuangKelas', 'url'=>array('admin')),
+	array('label'=>'Daftar Ruang Kelas', 'url'=>array('index')),
+	array('label'=>'Manage Ruang Kelas', 'url'=>array('admin')),
 );
 ?>
 

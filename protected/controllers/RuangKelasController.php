@@ -65,7 +65,7 @@ class RuangKelasController extends Controller
 		$model=new RuangKelas;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['RuangKelas']))
 		{
@@ -89,7 +89,7 @@ class RuangKelasController extends Controller
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['RuangKelas']))
 		{

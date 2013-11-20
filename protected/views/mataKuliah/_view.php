@@ -18,7 +18,7 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('praktek')); ?>:</b>
-	<?php echo CHtml::encode($data->praktek); ?>
+	<?php echo CHtml::encode($data->praktek == '1' ? 'Praktek' : 'Teori'); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('sks')); ?>:</b>

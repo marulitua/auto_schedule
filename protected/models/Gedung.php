@@ -1,27 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "ruang_kelas".
+ * This is the model class for table "gedung".
  *
- * The followings are the available columns in table 'ruang_kelas':
+ * The followings are the available columns in table 'gedung':
  * @property integer $id
- * @property integer $praktek
- * @property string $number
- * @property integer $gedung_id
- * @property integer $lantai
+ * @property string $gedung
+ * @property integer $max_lantai
  *
  * The followings are the available model relations:
- * @property Gedung $gedung
- * @property TrxJadwal[] $trxJadwals
+ * @property RuangKelas[] $ruangKelases
  */
-class RuangKelas extends CActiveRecord
+class Gedung extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'ruang_kelas';
+		return 'gedung';
 	}
 
 	/**
@@ -32,13 +29,12 @@ class RuangKelas extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('praktek, number, gedung_id', 'required'),
-			array('praktek, lantai', 'numerical', 'integerOnly'=>true),
-			array('number', 'length', 'max'=>50),
-                        array('number', 'unique'),
+			array('gedung, max_lantai', 'required'),
+			array('max_lantai', 'numerical', 'integerOnly'=>true),
+			array('gedung', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, praktek, number, gedung_id, lantai', 'safe', 'on'=>'search'),
+			array('id, gedung, max_lantai', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,8 +46,7 @@ class RuangKelas extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'gedung' => array(self::BELONGS_TO, 'Gedung', 'gedung_id'),
-			'trxJadwals' => array(self::HAS_MANY, 'TrxJadwal', 'ruang_kelas'),
+			'ruangKelases' => array(self::HAS_MANY, 'RuangKelas', 'gedung_id'),
 		);
 	}
 
@@ -62,10 +57,8 @@ class RuangKelas extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'praktek' => 'Teori / Praktek',
-			'number' => 'Nomor Ruangan',
-			'gedung_id' => 'Gedung',
-			'lantai' => 'Lantai',
+			'gedung' => 'Gedung',
+			'max_lantai' => 'Max Lantai',
 		);
 	}
 
@@ -88,16 +81,11 @@ class RuangKelas extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('praktek',$this->praktek);
-		$criteria->compare('number',$this->number,true);
-		$criteria->compare('gedung_id',$this->gedung_id);
-		$criteria->compare('lantai',$this->lantai);
+		$criteria->compare('gedung',$this->gedung,true);
+		$criteria->compare('max_lantai',$this->max_lantai);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-                        'pagination' => array(
-                            'pageSize' => 20,
-                        ),
 		));
 	}
 
@@ -105,7 +93,7 @@ class RuangKelas extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return RuangKelas the static model class
+	 * @return Gedung the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

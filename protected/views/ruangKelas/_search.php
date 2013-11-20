@@ -27,8 +27,13 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'keterangan'); ?>
-		<?php echo $form->textArea($model,'keterangan',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->label($model,'gedung_id'); ?>
+		<?php echo $form->textField($model,'gedung_id'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'lantai'); ?>
+		<?php echo $form->textField($model,'lantai'); ?>
 	</div>
 
 	<div class="row buttons">

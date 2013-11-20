@@ -3,13 +3,13 @@
 /* @var $model RuangKelas */
 
 $this->breadcrumbs=array(
-	'Ruang Kelases'=>array('index'),
+	'Ruang Kelas'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List RuangKelas', 'url'=>array('index')),
-	array('label'=>'Create RuangKelas', 'url'=>array('create')),
+	array('label'=>'Daftar Ruang Kelas', 'url'=>array('index')),
+	array('label'=>'Tambah Ruang Kelas', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,31 +26,36 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Ruang Kelases</h1>
+<h1>Manage Ruang Kelas</h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'ruang-kelas-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
+        'type'=>'striped bordered condensed',
+        'template'=>"{items}{summary}{pager}",
 	'columns'=>array(
-		'id',
-		'praktek',
+		//'id',
+                 array(
+                  'header' => 'No',
+                  'value'=>'$this->grid->dataProvider->pagination->currentPage * $this->grid->dataProvider->pagination->pageSize + ($row+1)',                   
+                ),
+		//'praktek',
 		'number',
-		'keterangan',
+                array(
+                    'name' => 'praktek',
+                    'value' => '$data->praktek == \'1\' ? \'Praktek\' : \'Teori\' ', 
+                    'filter'=>array(0=>'Teori', 1=>'Praktek'),
+                ),
+		//'gedung_id',
+                array(
+                    'name' => 'gedung_id',
+                    'value' => '$data->gedung->gedung'
+                ),
+		'lantai',
 		array(
-			'class'=>'CButtonColumn',
+			'class'=>'bootstrap.widgets.TbButtonColumn',
+                        'htmlOptions'=>array('style'=>'width: 50px'),
 		),
 	),
 )); ?>

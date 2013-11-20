@@ -3,19 +3,19 @@
 /* @var $model RuangKelas */
 
 $this->breadcrumbs=array(
-	'Ruang Kelases'=>array('index'),
+	'Ruang Kelas'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List RuangKelas', 'url'=>array('index')),
-	array('label'=>'Create RuangKelas', 'url'=>array('create')),
-	array('label'=>'View RuangKelas', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage RuangKelas', 'url'=>array('admin')),
+	array('label'=>'Daftar Ruan gKelas', 'url'=>array('index')),
+	array('label'=>'Tambah Ruang Kelas', 'url'=>array('create')),
+	array('label'=>'View Ruang Kelas', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage Ruang Kelas', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update RuangKelas <?php echo $model->id; ?></h1>
+<h1>Update Ruang Kelas <?php echo $model->id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
