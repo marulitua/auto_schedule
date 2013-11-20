@@ -55,7 +55,35 @@ $('.search-form form').submit(function(){
 		'lantai',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-                        'htmlOptions'=>array('style'=>'width: 50px'),
+                        'htmlOptions'=>array('style'=>'width: 60px'),
+                        'template' => '{attribut}{view}{update}{delete}',
+                        'buttons' => array(
+                            'attribut' => array(
+                                'label' => 'attribut',
+                                'imageUrl' => false,
+                                //'class' => array('fancy-item'),
+                                'options'=>array('class' => 'fancy-item'), 
+                                'icon' => 'th-list',
+                                'url' => 'Yii::app()->createUrl("ruangKelas/attribut", array("id"=>$data->id))',
+                            ),
+                        ),
 		),
 	),
 )); ?>
+
+<?php
+//create a link
+echo  CHtml::link('link text goes here',"#data", array("id"=>"fancy-link")); 
+ 
+//put fancybox on page
+$this->widget('application.extensions.fancybox.EFancyBox', array(
+        'target'=>'.fancy-item',
+        'config'=>array(),));  
+?>  
+ 
+//use nested div structure as below
+<div style="display:none">
+<div id="data">
+<p>Contents of this div appear in fancybox</p>
+</div>
+</div>
