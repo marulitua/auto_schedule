@@ -95,4 +95,8 @@ class Atribut extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function selectAble($id){
+            return $this->findAll();
+        }
 }

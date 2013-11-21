@@ -2,6 +2,22 @@
 /* @var $this RuangKelasController */
 /* @var $model RuangKelas */
 
+ $config = array( 
+        'titleShow' => true,
+        'showCloseButton' => true,
+        'scrollcenter' => true,
+        'autoScale' => true,
+        'centerOnScroll' => true,
+        'showNavArrows' => false,
+    // change this as you need
+    );
+    
+    //put fancybox on page
+    $this->widget('application.extensions.fancybox.EFancyBox', array(
+        'target'=>'.fancy-item',
+        'config'=> $config,)
+    );  
+
 $this->breadcrumbs=array(
 	'Ruang Kelas'=>array('index'),
 	'Manage',
@@ -23,6 +39,11 @@ $('.search-form form').submit(function(){
 	});
 	return false;
 });
+
+$('#btnTest').click(function(){
+            alert('test');
+        });
+        
 ");
 ?>
 
@@ -50,7 +71,8 @@ $('.search-form form').submit(function(){
 		//'gedung_id',
                 array(
                     'name' => 'gedung_id',
-                    'value' => '$data->gedung->gedung'
+                    'value' => '$data->gedung->gedung',
+                    'filter' => CHtml::listData(Gedung::model()->findAll(), 'id', 'gedung'),
                 ),
 		'lantai',
 		array(
@@ -70,20 +92,3 @@ $('.search-form form').submit(function(){
 		),
 	),
 )); ?>
-
-<?php
-//create a link
-echo  CHtml::link('link text goes here',"#data", array("id"=>"fancy-link")); 
- 
-//put fancybox on page
-$this->widget('application.extensions.fancybox.EFancyBox', array(
-        'target'=>'.fancy-item',
-        'config'=>array(),));  
-?>  
- 
-//use nested div structure as below
-<div style="display:none">
-<div id="data">
-<p>Contents of this div appear in fancybox</p>
-</div>
-</div>

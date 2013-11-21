@@ -100,4 +100,17 @@ class TrxRuangAtribut extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function cariAtribut($ruangKelas){
+            $criteria=new CDbCriteria;
+
+            $criteria->compare('ruang_kelas_id',$ruangKelas);
+
+            return new CActiveDataProvider($this, array(
+		'criteria'=>$criteria,
+                'pagination' => array(
+                            'pageSize' => 5,
+                        ),
+            ));
+        }
 }
