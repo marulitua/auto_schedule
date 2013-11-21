@@ -81,12 +81,20 @@ class TrxRuangAtribut extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
+                
+                
 		$criteria->compare('id',$this->id);
-		$criteria->compare('ruang_kelas_id',$this->ruang_kelas_id);
+                $criteria->compare('ruang_kelas_id',$this->ruang_kelas_id);
+                if(isset($_REQUEST['id']))
+                    $criteria->compare('ruang_kelas_id',$_REQUEST['id']);
 		$criteria->compare('atribut_id',$this->atribut_id);
-
+                
+                
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination' => array(
+                            'pageSize' => 5,
+                        ),
 		));
 	}
 
@@ -112,5 +120,23 @@ class TrxRuangAtribut extends CActiveRecord
                             'pageSize' => 5,
                         ),
             ));
+        }
+        
+        public static function CreateFilter($id){
+            $query = Yii::app()->db->createCommand("SELECT a.id, a.atribut 
+                     FROM `trx_ruang_atribut` `t` 
+                     left join atribut a on t.atribut_id = a.id 
+                     WHERE ruang_kelas_id = $id")->queryAll();
+            
+            $data = array();
+            
+            if(count($query) == 0)
+                return "";
+            
+            foreach ($query as $key => $value) {
+                $data[$value['id']] = ucfirst(strtolower($value['atribut'])); 
+            }
+            
+            return $data;
         }
 }

@@ -86,7 +86,7 @@ $('#btnTest').click(function(){
                                 //'class' => array('fancy-item'),
                                 'options'=>array('class' => 'fancy-item'), 
                                 'icon' => 'th-list',
-                                'url' => 'Yii::app()->createUrl("ruangKelas/attribut", array("id"=>$data->id))',
+                                'url' => 'Yii::app()->createUrl("trxRuangAtribut/admin", array("id"=>$data->id))',
                             ),
                         ),
 		),

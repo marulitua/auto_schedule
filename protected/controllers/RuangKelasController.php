@@ -157,17 +157,4 @@ class RuangKelasController extends Controller {
             Yii::app()->end();
         }
     }
-
-    public function actionAttribut() {
-        Yii::app()->clientScript->scriptMap['*.js'] = false;
-        $this->render('attribut', array('model' => new TrxRuangAtribut(), 'id' => $_REQUEST['id']));
-    }
-
-    public function actiondeleteAtribut($id) {
-        if (!isset($_GET['ajax'])) {
-            $model = TrxRuangAtribut::model()->findByPk($id);
-            $model->delete();
-        }
-    }
-
 }

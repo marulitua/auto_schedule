@@ -92,6 +92,7 @@ class RuangKelas extends CActiveRecord
 		$criteria->compare('number',$this->number,true);
 		$criteria->compare('gedung_id',$this->gedung_id);
 		$criteria->compare('lantai',$this->lantai);
+                $criteria->order = 'number';
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
