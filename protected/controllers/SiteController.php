@@ -113,4 +113,33 @@ class SiteController extends Controller
         public function actionHelp(){
                 $this->render('help');
         }
+        
+        public function actionaddPeriode(){
+                $new = new Periode();
+                
+                //find the last periode
+                $last = Periode::model()->find(array('order' => 'finished_time DESC'));
+                
+                if($last->semester_id == 1){
+                    $new->tahun_ajar = $last->tahun_ajar;
+                    $new->semester_id = 2;
+                    $new->create_time =  date("Y-m-d H:i:s", time());
+                }
+                else{
+                    $tahun = explode("-", $last->tahun_ajar);
+                    $tahun[0] += 1;
+                    $tahun[1] += 1;
+                    $new->tahun_ajar = implode("-", $tahun);
+                    $new->semester_id = 1;
+                    $new->create_time =  date("Y-m-d H:i:s", time());
+                }
+                
+                try{
+                    if($new->save())
+                        $this->redirect(Yii::app()->createUrl('generate'));
+                } catch (Exception $ex) {
+                    echo 'WHY U';
+                    echo $ex;
+                }
+        }
 }

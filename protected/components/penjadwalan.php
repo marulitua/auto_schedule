@@ -124,6 +124,44 @@ class penjadwalan extends CComponent {
         
         return false;
     }
+    
+    public static function activePeriode(){
+        return Periode::model()->find('finished_time is null');
+    }
+
+    public static function isEnableBtnPeriode(){
+        
+        return Periode::model()->find('finished_time is null') == null ? false : true;
+    
+    }
+    
+    public static function isEnableBtnKurikulum(){
+        if(!self::isEnableBtnPeriode())
+            return true;
+    
+        return false;
+    }
+    
+    public static function isEnableBtnPengajar(){
+        if(!self::isEnableBtnPeriode())
+            return true;
+        else
+            if(TrxKurikulum::model()->count("periode_id = ".self::activePeriode()->id) == '0')
+                return true;
+        
+        return false;
+    }
+    
+    public static function isEnableBtnGenerate(){
+        if(!self::isEnableBtnPeriode())
+            return true;
+        else
+            if(self::activePeriode() != null)      
+                    if(TrxPengajar::model()->count("periode_id = ".self::activePeriode()->id) == '0')
+                        return true;
+        
+        return false;
+    }
 
 }
 
