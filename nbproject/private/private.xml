@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/ruangKelas/attribut.php</file>
+            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/trxRuangAtribut/admin.php</file>
             <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/ruangKelas/admin.php</file>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/models/Atribut.php</file>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/ruangKelas/_form.php</file>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/controllers/RuangKelasController.php</file>
+            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/layouts/main.php</file>
         </group>
     </open-files>
 </project-private>

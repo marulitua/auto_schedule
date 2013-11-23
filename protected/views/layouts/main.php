@@ -114,6 +114,10 @@
                                             'label' => '3. Ruang Kelas',
                                             'url' => Yii::app()->createUrl('ruangKelas/admin'),
                                         ),
+                                        array(
+                                            'label' => '4. Atribut',
+                                            'url' => Yii::app()->createUrl('atribut/admin'),
+                                        ),
                                 ),
                             ),
                             array(

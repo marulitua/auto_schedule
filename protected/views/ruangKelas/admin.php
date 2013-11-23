@@ -2,13 +2,27 @@
 /* @var $this RuangKelasController */
 /* @var $model RuangKelas */
 
+//$bu = Yii::app()->assetManager->publish('/opt/lampp/htdocs'.Yii::app()->baseUrl.'/protected/extensions/bootstrap/assets');
+//
+//$cs = Yii::app()->clientScript;
+//$cs->registerScriptFile($bu . '/js/select2.min.js');
+//$cs->registerCoreScript('jquery.ui');
+//$cs->registerCssFile($bu . '/css/select2.css');
+
+
+$cs = Yii::app()->clientScript;
+$cs->registerCssFile(Yii::app()->baseUrl. '/css/select2.css');
+$cs->registerScriptFile(Yii::app()->baseUrl. '/js/select2.min.js');
+
  $config = array( 
         'titleShow' => true,
         'showCloseButton' => true,
         'scrollcenter' => true,
-        'autoScale' => true,
+        //'autoScale' => true,
         'centerOnScroll' => true,
         'showNavArrows' => false,
+        'width' => 400,
+        
     // change this as you need
     );
     
@@ -40,6 +54,11 @@ $('.search-form form').submit(function(){
 	return false;
 });
 
+
+function fancyreBinding(){
+    $('.fancy-item').fancybox({'titleShow':true,'showCloseButton':true,'scrollcenter':true,'centerOnScroll':true,'showNavArrows':false,'width':400});
+}
+
 $('#btnTest').click(function(){
             alert('test');
         });
@@ -55,7 +74,9 @@ $('#btnTest').click(function(){
 	'filter'=>$model,
         'type'=>'striped bordered condensed',
         'template'=>"{items}{summary}{pager}",
-	'columns'=>array(
+        //'afterAjaxUpdate' => "$('.fancy-item').fancybox({'titleShow':true,'showCloseButton':true,'scrollcenter':true,'centerOnScroll':true,'showNavArrows':false,'width':400})",
+        'afterAjaxUpdate' =>  'fancyreBinding',
+        'columns'=>array(
 		//'id',
                  array(
                   'header' => 'No',
@@ -74,7 +95,10 @@ $('#btnTest').click(function(){
                     'value' => '$data->gedung->gedung',
                     'filter' => CHtml::listData(Gedung::model()->findAll(), 'id', 'gedung'),
                 ),
-		'lantai',
+                array(
+                    'name' => 'lantai',
+                    'htmlOptions' => array('style' => 'width:30px'),
+                ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
                         'htmlOptions'=>array('style'=>'width: 60px'),

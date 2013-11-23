@@ -36,7 +36,7 @@ class TrxRuangAtributController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete', 'DeleteAtribut'),
+				'actions'=>array('admin','delete', 'DeleteAtribut', 'add'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -142,6 +142,7 @@ class TrxRuangAtributController extends Controller
 
 		$this->render('admin',array(
 			'model'=>$model,
+                        'id' => $_REQUEST['id'],
 		));
 	}
 
@@ -176,6 +177,27 @@ class TrxRuangAtributController extends Controller
         public function actionDeleteAtribut($id) {
             if (!isset($_GET['ajax'])) {
                 $this->loadModel($id)->delete();
+            }
+        }
+        
+        public function actionAdd(){
+            $data = $_REQUEST['data'];
+            $data = explode(',', $data);
+            $id = $_REQUEST['id'];
+            
+            foreach ($data as $per) {
+                $find = Atribut::model()->find("lower('$per') = lower(atribut)");
+                if(!isset($find)){
+                    $find = new Atribut();
+                    $find->atribut = $per;
+                    $find->save();
+                }
+                        
+                // add to trx_ruang_atribut
+                $new = new TrxRuangAtribut();
+                $new->ruang_kelas_id = $id;
+                $new->atribut_id = $find->id;
+                $new->save();
             }
         }
 }

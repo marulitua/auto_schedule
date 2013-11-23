@@ -30,6 +30,7 @@ class Atribut extends CActiveRecord
 		return array(
 			array('atribut', 'required'),
 			array('atribut', 'length', 'max'=>200),
+                        array('atribut', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, atribut', 'safe', 'on'=>'search'),
@@ -82,6 +83,9 @@ class Atribut extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination' => array(
+                            'pageSize' => 20,
+                        ),
 		));
 	}
 
@@ -99,4 +103,24 @@ class Atribut extends CActiveRecord
         public function selectAble($id){
             return $this->findAll();
         }
+        
+        public static function toSelect($id){
+            $query = Yii::app()->db->createCommand("SELECT a.atribut
+                    from atribut a
+                    where a.id not in (
+                    select t.atribut_id
+                    from trx_ruang_atribut t
+                    where t.ruang_kelas_id = $id
+                    )")->queryAll();
+            
+            $data = array();
+            if(count($query) == 0)
+                return "";
+            
+            foreach ($query as $key => $value) {
+                array_push($data, $value['atribut']);
+            }
+            
+            return implode("','",$data);
+        } 
 }
