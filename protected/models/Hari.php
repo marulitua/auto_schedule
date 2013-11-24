@@ -1,26 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "trx_kurikulum".
+ * This is the model class for table "hari".
  *
- * The followings are the available columns in table 'trx_kurikulum':
+ * The followings are the available columns in table 'hari':
  * @property integer $id
- * @property integer $periode_id
- * @property integer $mata_kuliah_id
- * @property integer $jumlah_kelas
+ * @property string $hari
  *
  * The followings are the available model relations:
- * @property MataKuliah $mataKuliah
- * @property Periode $periode
+ * @property TrxDosenTime[] $trxDosenTimes
+ * @property TrxHariKurikulum[] $trxHariKurikulums
  */
-class TrxKurikulum extends CActiveRecord
+class Hari extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'trx_kurikulum';
+		return 'hari';
 	}
 
 	/**
@@ -31,11 +29,11 @@ class TrxKurikulum extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('periode_id, mata_kuliah_id, jumlah_kelas', 'required'),
-			array('periode_id, mata_kuliah_id, jumlah_kelas', 'numerical', 'integerOnly'=>true),
+			array('hari', 'required'),
+			array('hari', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, periode_id, mata_kuliah_id, jumlah_kelas', 'safe', 'on'=>'search'),
+			array('id, hari', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -47,8 +45,8 @@ class TrxKurikulum extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'mataKuliah' => array(self::BELONGS_TO, 'MataKuliah', 'mata_kuliah_id'),
-			'periode' => array(self::BELONGS_TO, 'Periode', 'periode_id'),
+			'trxDosenTimes' => array(self::HAS_MANY, 'TrxDosenTime', 'day'),
+			'trxHariKurikulums' => array(self::HAS_MANY, 'TrxHariKurikulum', 'hari_id'),
 		);
 	}
 
@@ -59,9 +57,7 @@ class TrxKurikulum extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'periode_id' => 'Periode',
-			'mata_kuliah_id' => 'Mata Kuliah',
-			'jumlah_kelas' => 'Jumlah Kelas',
+			'hari' => 'Hari',
 		);
 	}
 
@@ -84,15 +80,10 @@ class TrxKurikulum extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('periode_id',$this->periode_id);
-		$criteria->compare('mata_kuliah_id',$this->mata_kuliah_id);
-		$criteria->compare('jumlah_kelas',$this->jumlah_kelas);
+		$criteria->compare('hari',$this->hari,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-                        'pagination' => array(
-                            'pageSize' => 20,
-                        ),
 		));
 	}
 
@@ -100,31 +91,10 @@ class TrxKurikulum extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return TrxKurikulum the static model class
+	 * @return Hari the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-        
-        public static function toAdd(){
-            
-            $data = Yii::app()->db->createCommand("
-                    select a.id, a.mata_kuliah
-                    from mata_kuliah a
-                    left join trx_kurikulum t on t.mata_kuliah_id = a.id
-                    where a.id not in (
-                            select t.mata_kuliah_id 
-                            from trx_kurikulum t 
-                            where t.periode_id = ".penjadwalan::activePeriode()->id."
-                    )")->queryAll();
-            
-            $in = array();
-            
-            foreach ($data as $key) {
-                $in[$key['id']] = $key['mata_kuliah'];
-            }
-            
-            return array("" => "") + $in;
-        }
 }

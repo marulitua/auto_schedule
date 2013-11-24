@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/atribut/view.php</file>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/atribut/create.php</file>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/atribut/update.php</file>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/layouts/main.php</file>
-            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/atribut/index.php</file>
+            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/trxKurikulum/admin.php</file>
+            <file>file:/opt/lampp/htdocs/auto_schedule/protected/models/TrxHariKurikulum.php</file>
+            <file>file:/opt/lampp/htdocs/auto_schedule/protected/views/trxKurikulum/_form.php</file>
+            <file>file:/opt/lampp/htdocs/auto_schedule/protected/models/TrxKurikulum.php</file>
+            <file>file:/opt/lampp/htdocs/auto_schedule/protected/controllers/TrxKurikulumController.php</file>
+            <file>file:/opt/lampp/htdocs/auto_schedule/protected/models/TrxAtributKurikulum.php</file>
         </group>
     </open-files>
 </project-private>

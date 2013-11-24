@@ -62,10 +62,13 @@ class TrxKurikulumController extends Controller
 	 */
 	public function actionCreate()
 	{
+                if(isset($_REQUEST))
+                    print_r ($_REQUEST);
+                
 		$model=new TrxKurikulum;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['TrxKurikulum']))
 		{
@@ -89,7 +92,7 @@ class TrxKurikulumController extends Controller
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['TrxKurikulum']))
 		{
