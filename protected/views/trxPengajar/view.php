@@ -3,26 +3,34 @@
 /* @var $model TrxPengajar */
 
 $this->breadcrumbs=array(
-	'Trx Pengajars'=>array('index'),
+	'Pengajar'=>array('index'),
 	$model->id,
 );
 
 $this->menu=array(
-	array('label'=>'List TrxPengajar', 'url'=>array('index')),
-	array('label'=>'Create TrxPengajar', 'url'=>array('create')),
-	array('label'=>'Update TrxPengajar', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete TrxPengajar', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage TrxPengajar', 'url'=>array('admin')),
+	array('label'=>'Daftar Pengajar', 'url'=>array('index')),
+	array('label'=>'Tambah Pengajar', 'url'=>array('create')),
+	array('label'=>'Update Pengajar', 'url'=>array('update', 'id'=>$model->id)),
+	array('label'=>'Delete Pengajar', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage Pengajar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>View TrxPengajar #<?php echo $model->id; ?></h1>
+<h1>View Pengajar #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
-		'periode_id',
-		'dosen_id',
+		//'periode_id',
+		//'dosen_id',
+                array(
+                   'label' => 'Dosen',
+                   'value' => $model->dosen->full_name,
+                ),
+                array(
+                   'label' => 'Mata Kuliah',
+                   'value' => $model->mataKuliah($model->id),
+                ),
 	),
 )); ?>

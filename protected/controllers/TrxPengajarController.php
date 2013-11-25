@@ -65,13 +65,25 @@ class TrxPengajarController extends Controller
 		$model=new TrxPengajar;
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['TrxPengajar']))
 		{
 			$model->attributes=$_POST['TrxPengajar'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+                            
+                            //hari
+                            if(TrxPengajarMataKuliah::model()->isChecked()){
+                                foreach ($_REQUEST['TrxPengajar']['mataKuliah'] as $key => $value) {
+                                    $new = new TrxPengajarMataKuliah();
+                                    $new->pengajar_id = $model->id;
+                                    $new->mata_kuliah_id = $value;
+                                    $new->save();
+                                }
+                            }
+                            
+                            $this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
 		$this->render('create',array(
@@ -89,13 +101,27 @@ class TrxPengajarController extends Controller
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+		$this->performAjaxValidation($model);
 
 		if(isset($_POST['TrxPengajar']))
 		{
 			$model->attributes=$_POST['TrxPengajar'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+                            //drop TrxPengajarMataKuliah
+                            TrxPengajarMataKuliah::model()->deleteAll("pengajar_id = $model->id");
+                            
+                            //mata kuliah
+                            if(TrxPengajarMataKuliah::model()->isChecked()){
+                                foreach ($_REQUEST['TrxPengajar']['mataKuliah'] as $key => $value) {
+                                    $new = new TrxPengajarMataKuliah();
+                                    $new->pengajar_id = $model->id;
+                                    $new->mata_kuliah_id = $value;
+                                    $new->save();
+                                }
+                            }
+                            
+                            $this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
 		$this->render('update',array(
@@ -110,6 +136,8 @@ class TrxPengajarController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+                //drop TrxPengajarMataKuliah
+                TrxPengajarMataKuliah::model()->deleteAll("pengajar_id = $id");
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser

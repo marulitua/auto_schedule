@@ -82,11 +82,14 @@ class TrxPengajar extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('periode_id',$this->periode_id);
+		$criteria->compare('periode_id',  penjadwalan::activePeriode()->id);
 		$criteria->compare('dosen_id',$this->dosen_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination' => array(
+                            'pageSize' => '20'
+                        ),
 		));
 	}
 
@@ -100,4 +103,63 @@ class TrxPengajar extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public static function toAdd($param = false){
+            
+            $data = Yii::app()->db->createCommand("
+                    select d.id, d.full_name
+                    from dosen d
+                    left join trx_pengajar t on t.dosen_id = d.id
+                    where d.id not in (
+                            select t.dosen_id 
+                            from trx_pengajar t 
+                            where t.periode_id = ".penjadwalan::activePeriode()->id."
+                    )")->queryAll();
+            
+            $in = array();
+            
+            foreach ($data as $key) {
+                $in[$key['id']] = $key['full_name'];
+            }
+            
+            if($param != false)
+                $in[$param] = Dosen::model ()->findByPk($param)->full_name;
+            
+            return array("" => "") + $in;
+        }
+        
+        public static function mataKuliah($param){
+            
+            $data = array();
+            
+            $query = Yii::app()->db->createCommand(""
+                    . "select m.mata_kuliah "
+                    . "from mata_kuliah m "
+                    . "left join trx_pengajar_mata_kuliah t on t.mata_kuliah_id = m.id "
+                    . "where t.pengajar_id = $param")->queryAll();
+            
+            foreach ($query as $key => $value) {
+                array_push($data, $value['mata_kuliah']);
+            }
+            
+            return implode(",", $data);
+        }
+        
+        public static function createFilter(){
+            $criteria = new CDbCriteria();
+            $criteria->select =  array("d.id", "d.full_name");
+            $criteria->join = "left join dosen d on d.id = t.dosen_id";
+            $criteria->condition = "periode_id = ".penjadwalan::activePeriode()->id;
+            
+            $query = TrxPengajar::model()->findAll($criteria);
+            
+            $return = array();
+            
+            if(count($query) > 0)
+                foreach ($query as $value) {
+                    $return[$value["id"]] = Dosen::model()->findByPk($value["id"])->full_name;
+                }
+            
+            return $return;
+        }
 }

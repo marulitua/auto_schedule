@@ -8,24 +8,9 @@ $cs->registerCssFile(Yii::app()->baseUrl. '/css/select2.css');
 $cs->registerScriptFile(Yii::app()->baseUrl. '/js/select2.min.js');
 
 Yii::app()->clientScript->registerScript('search', "
-
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-
-$('.search-form form').submit(function(){
-	$('#trx-ruang-atribut-grid').yiiGridView('update', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-
 //Hari
 $('#TrxKurikulum_hari').select2();
 $('#TrxKurikulum_hari').select2('val', [".TrxHariKurikulum::model()->preLoaded($model->id)."]);
-
-$('input[id^=s2id_au]').width(200);
 
 $('#TrxKurikulum_isHari').click(function(){
     $('#rowHari').toggle();
@@ -35,9 +20,6 @@ $('#TrxKurikulum_isHari').click(function(){
 $('#TrxKurikulum_atribut').select2();
 $('#TrxKurikulum_atribut').select2('val', [".TrxAtributKurikulum::model()->preLoaded($model->id)."]);
 
-$('input[id^=s2id_au]').width(200);
-
-
 $('#TrxKurikulum_isAtribut').click(function(){
     $('#rowAtribut').toggle();
 });
@@ -45,8 +27,6 @@ $('#TrxKurikulum_isAtribut').click(function(){
 //Ruang
 $('#TrxKurikulum_ruang').select2();
 $('#TrxKurikulum_ruang').select2('val', [".TrxRuangKurikulum::model()->preLoaded($model->id)."]);
-
-$('input[id^=s2id_au]').width(200);
 
 $('#TrxKurikulum_isRuang').click(function(){
     $('#rowRuang').toggle();

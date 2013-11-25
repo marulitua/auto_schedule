@@ -3,16 +3,16 @@
 /* @var $model TrxPengajar */
 
 $this->breadcrumbs=array(
-	'Trx Pengajars'=>array('index'),
-	'Create',
+	'Pengajar'=>array('index'),
+	'Tambah',
 );
 
 $this->menu=array(
-	array('label'=>'List TrxPengajar', 'url'=>array('index')),
-	array('label'=>'Manage TrxPengajar', 'url'=>array('admin')),
+	array('label'=>'Daftar Pengajar', 'url'=>array('index')),
+	array('label'=>'Manage Pengajar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create TrxPengajar</h1>
+<h1>Tambah Pengajar</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

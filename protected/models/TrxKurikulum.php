@@ -134,7 +134,25 @@ class TrxKurikulum extends CActiveRecord
         }
         
         public static function createFilter(){            
-            return CHtml::listData(TrxKurikulum::model()->findAll("periode_id = ".penjadwalan::activePeriode()->id), "mata_kuliah_id", "mata_kuliah_id");
+            
+            
+            $criteria = new CDbCriteria();
+            $criteria->select =  array("m.id", "m.mata_kuliah");
+            $criteria->join = "left join mata_kuliah m on m.id = t.mata_kuliah_id";
+            $criteria->condition = "periode_id = ".penjadwalan::activePeriode()->id;
+            
+            TrxKurikulum::model()->findAll("periode_id = ".penjadwalan::activePeriode()->id);
+            
+            $query = TrxKurikulum::model()->findAll($criteria);
+            
+            $return = array();
+            
+            if(count($query) > 0)
+                foreach ($query as $value) {
+                    $return[$value["id"]] = MataKuliah::model()->findByPk($value["id"])->mata_kuliah;
+                }
+            
+            return $return;
         }
         
         public static function hari($param){
