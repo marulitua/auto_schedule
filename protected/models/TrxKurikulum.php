@@ -84,7 +84,7 @@ class TrxKurikulum extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('periode_id',$this->periode_id);
+		$criteria->compare('periode_id',  penjadwalan::activePeriode()->id);
 		$criteria->compare('mata_kuliah_id',$this->mata_kuliah_id);
 		$criteria->compare('jumlah_kelas',$this->jumlah_kelas);
 
@@ -131,5 +131,56 @@ class TrxKurikulum extends CActiveRecord
             
             
             return array("" => "") + $in;
+        }
+        
+        public static function createFilter(){            
+            return CHtml::listData(TrxKurikulum::model()->findAll("periode_id = ".penjadwalan::activePeriode()->id), "mata_kuliah_id", "mata_kuliah_id");
+        }
+        
+        public static function hari($param){
+            
+            $data = array();
+            
+            $query = Yii::app()->db->createCommand(""
+                    . "select h.hari "
+                    . "from hari h "
+                    . "left join trx_hari_kurikulum t on t.hari_id = h.id "
+                    . "where t.kurikulum_id = $param")->queryAll();
+            
+            foreach ($query as $key => $value) {
+                array_push($data, $value['hari']);
+            }
+            
+            return implode(",", $data);
+        }
+        
+        public static function ruang($param){
+            $data = array();
+            
+            $query = Yii::app()->db->createCommand(""
+                    . "select r.number "
+                    . "from ruang_kelas r "
+                    . "left join trx_ruang_kurikulum t on t.ruang_kelas_id = r.id "
+                    . "where t.kurikulum_id = $param")->queryAll();
+            
+            if(count($query) > 0){
+                foreach ($query as $key => $value) {
+                    array_push($data, $value['number']);
+                }
+            }
+            else{
+                $query = Yii::app()->db->createCommand(""
+                    . "select a.atribut "
+                    . "from atribut a "
+                    . "left join trx_atribut_kurikulum t on t.atribut_id = a.id "
+                    . "where t.kurikulum_id = $param")->queryAll();
+            
+            
+                foreach ($query as $key => $value) {
+                    array_push($data, $value['atribut']);
+                }
+            }
+            
+            return implode(",", $data);
         }
 }

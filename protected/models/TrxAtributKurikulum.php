@@ -128,7 +128,7 @@ class TrxAtributKurikulum extends CActiveRecord
                             select t.atribut_id
                             from trx_atribut_kurikulum t
                             left join trx_kurikulum k on k.id = t.kurikulum_id
-                            where k.periode_id = ".penjadwalan::activePeriode()->id)->queryAll();
+                            where t.kurikulum_id = $param and k.periode_id = ".penjadwalan::activePeriode()->id)->queryAll();
                 
                 if(count($query) != 0 ){
                     foreach ($query as $per) {
@@ -155,7 +155,7 @@ class TrxAtributKurikulum extends CActiveRecord
                     select count(t.atribut_id)
                     from trx_atribut_kurikulum t
                     left join trx_kurikulum k on k.id = t.kurikulum_id
-                    where k.periode_id = ".penjadwalan::activePeriode()->id)->queryScalar();
+                    where t.kurikulum_id = $param and k.periode_id = ".penjadwalan::activePeriode()->id)->queryScalar();
                 if($query > 0)
                     return true;
             }

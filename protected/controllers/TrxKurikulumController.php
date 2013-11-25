@@ -181,6 +181,13 @@ class TrxKurikulumController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+                //drop TrxHariKurikulum
+                TrxHariKurikulum::model()->deleteAll("kurikulum_id = $id");
+                //drop TrxAtributKurikulum
+                TrxAtributKurikulum::model()->deleteAll("kurikulum_id = $id");
+                //drop TrxRuangKurikulum
+                TrxRuangKurikulum::model()->deleteAll("kurikulum_id = $id");
+            
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser

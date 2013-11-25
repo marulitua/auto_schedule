@@ -7,8 +7,6 @@ $cs = Yii::app()->clientScript;
 $cs->registerCssFile(Yii::app()->baseUrl. '/css/select2.css');
 $cs->registerScriptFile(Yii::app()->baseUrl. '/js/select2.min.js');
 
-echo '<br>$model->isNewRecord = '.$model->isNewRecord.'<br>';
-
 Yii::app()->clientScript->registerScript('search', "
 
 $('.search-button').click(function(){

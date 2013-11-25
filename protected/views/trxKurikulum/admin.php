@@ -44,11 +44,26 @@ $('.search-form form').submit(function(){
                 array(
                   'name' => 'mata_kuliah_id',
                   'value' => '$data->mataKuliah->mata_kuliah',
+                  'filter' => TrxKurikulum::createFilter(),
                 ),
- 		'jumlah_kelas',
+// 		'jumlah_kelas',
+                array(
+                    'name' => 'jumlah_kelas',
+                    'htmlOptions' => array(
+                        'style' => 'width:40px',
+                    ),
+                ),
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
-                        'htmlOptions'=>array('style'=>'width: 100px'),
+                        'htmlOptions'=>array('style'=>'width: 55px'),
 		),
+                array(
+                   'header' => 'Hari Perkuliahan',
+                   'value' => 'TrxKurikulum::hari($data->id)',
+                ),
+                array(
+                   'header' => 'Ruang Kuliah',
+                   'value' => 'TrxKurikulum::ruang($data->id)',
+                ),
 	),
 )); ?>
