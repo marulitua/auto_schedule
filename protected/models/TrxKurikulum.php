@@ -181,6 +181,6 @@ class TrxKurikulum extends CActiveRecord
                 }
             }
             
-            return implode(",", $data);
+            return implode(", ", $data);
         }
 }

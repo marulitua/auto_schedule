@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Trx Kurikulums',
+	'Kurikulum',
 );
 
 $this->menu=array(
-	array('label'=>'Create TrxKurikulum', 'url'=>array('create')),
-	array('label'=>'Manage TrxKurikulum', 'url'=>array('admin')),
+	array('label'=>'Tambah Kurikulum', 'url'=>array('create')),
+	array('label'=>'Manage Kurikulum', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Trx Kurikulums</h1>
+<h1>Kurikulum</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

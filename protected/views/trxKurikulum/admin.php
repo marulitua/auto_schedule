@@ -54,10 +54,6 @@ $('.search-form form').submit(function(){
                     ),
                 ),
 		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-                        'htmlOptions'=>array('style'=>'width: 55px'),
-		),
-                array(
                    'header' => 'Hari Perkuliahan',
                    'value' => 'TrxKurikulum::hari($data->id)',
                 ),
@@ -65,5 +61,9 @@ $('.search-form form').submit(function(){
                    'header' => 'Ruang Kuliah',
                    'value' => 'TrxKurikulum::ruang($data->id)',
                 ),
+                array(
+			'class'=>'bootstrap.widgets.TbButtonColumn',
+                        'htmlOptions'=>array('style'=>'width: 55px'),
+		),
 	),
 )); ?>

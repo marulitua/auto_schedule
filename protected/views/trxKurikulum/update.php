@@ -3,19 +3,19 @@
 /* @var $model TrxKurikulum */
 
 $this->breadcrumbs=array(
-	'Trx Kurikulums'=>array('index'),
+	'Kurikulum'=>array('index'),
 	$model->id=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List TrxKurikulum', 'url'=>array('index')),
-	array('label'=>'Create TrxKurikulum', 'url'=>array('create')),
-	array('label'=>'View TrxKurikulum', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage TrxKurikulum', 'url'=>array('admin')),
+	array('label'=>'Daftar Kurikulum', 'url'=>array('index')),
+	array('label'=>'Tambah Kurikulum', 'url'=>array('create')),
+	array('label'=>'View Kurikulum', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'Manage Kurikulum', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update TrxKurikulum <?php echo $model->id; ?></h1>
+<h1>Update Kurikulum <?php echo $model->id; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

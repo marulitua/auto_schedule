@@ -3,16 +3,16 @@
 /* @var $model TrxKurikulum */
 
 $this->breadcrumbs=array(
-	'Trx Kurikulums'=>array('index'),
-	'Create',
+	'Kurikulum'=>array('index'),
+	'Tambah',
 );
 
 $this->menu=array(
-	array('label'=>'List TrxKurikulum', 'url'=>array('index')),
-	array('label'=>'Manage TrxKurikulum', 'url'=>array('admin')),
+	array('label'=>'Daftar Kurikulum', 'url'=>array('index')),
+	array('label'=>'Manage Kurikulum', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create TrxKurikulum</h1>
+<h1>Daftar Kurikulum</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>
