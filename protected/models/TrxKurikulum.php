@@ -107,7 +107,7 @@ class TrxKurikulum extends CActiveRecord
 		return parent::model($className);
 	}
         
-        public static function toAdd(){
+        public static function toAdd($param = false){
             
             $data = Yii::app()->db->createCommand("
                     select a.id, a.mata_kuliah
@@ -121,9 +121,14 @@ class TrxKurikulum extends CActiveRecord
             
             $in = array();
             
+            
             foreach ($data as $key) {
                 $in[$key['id']] = $key['mata_kuliah'];
             }
+            
+            if($param != false)
+                $in[$param] = MataKuliah::model ()->findByPk($param)->mata_kuliah;
+            
             
             return array("" => "") + $in;
         }

@@ -197,7 +197,9 @@ class TrxRuangAtributController extends Controller
                 $new = new TrxRuangAtribut();
                 $new->ruang_kelas_id = $id;
                 $new->atribut_id = $find->id;
-                $new->save();
+                
+                if(!$new->exists("ruang_kelas_id = $id and atribut_id = $find->id"))
+                    $new->save();
             }
         }
 }

@@ -130,7 +130,11 @@ class TrxRuangKurikulum extends CActiveRecord
             
             // preload from table => for update 
             if(!isset($_REQUEST['TrxKurikulum'])){
-                $query = TrxRuangKurikulum::model()->findAll("periode_id = ".penjadwalan::activePeriode()->id);
+                $query = Yii::app()->db->createCommand("
+                            select t.ruang_kelas_id
+                            from trx_ruang_kurikulum t
+                            left join trx_kurikulum k on k.id = t.kurikulum_id
+                            where k.periode_id = ".penjadwalan::activePeriode()->id)->queryAll();
                 
                 if(count($query) != 0 ){
                     foreach ($query as $per) {

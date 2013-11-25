@@ -7,7 +7,10 @@ $cs = Yii::app()->clientScript;
 $cs->registerCssFile(Yii::app()->baseUrl. '/css/select2.css');
 $cs->registerScriptFile(Yii::app()->baseUrl. '/js/select2.min.js');
 
+echo '<br>$model->isNewRecord = '.$model->isNewRecord.'<br>';
+
 Yii::app()->clientScript->registerScript('search', "
+
 $('.search-button').click(function(){
 	$('.search-form').toggle();
 	return false;
@@ -22,7 +25,7 @@ $('.search-form form').submit(function(){
 
 //Hari
 $('#TrxKurikulum_hari').select2();
-$('#TrxKurikulum_hari').select2('val', [".TrxHariKurikulum::model()->preLoaded()."]);
+$('#TrxKurikulum_hari').select2('val', [".TrxHariKurikulum::model()->preLoaded($model->id)."]);
 
 $('input[id^=s2id_au]').width(200);
 
@@ -51,13 +54,10 @@ $('#TrxKurikulum_isRuang').click(function(){
     $('#rowRuang').toggle();
 });
 
+
 ");
 
-
-
 ?>
-
-
 
 <script type="text/javascript">
     
@@ -82,9 +82,9 @@ $('#TrxKurikulum_isRuang').click(function(){
         <?php $model->periode_id = penjadwalan::activePeriode()->id; ?>
 	
         
-        <div class="row">
+        <div class="row span-5">
         
-            <div style="background-color: yellow;" class="span-6">
+            <div style="" class="span-5">
 
                 <div class="row hidden">
                         <?php echo $form->labelEx($model,'periode_id'); ?>
@@ -94,7 +94,7 @@ $('#TrxKurikulum_isRuang').click(function(){
 
                 <div class="row">
                         <?php echo $form->labelEx($model,'mata_kuliah_id'); ?>
-                        <?php echo $form->dropDownList($model,'mata_kuliah_id', TrxKurikulum::toAdd()); ?>
+                        <?php echo $form->dropDownList($model,'mata_kuliah_id', $model->isNewRecord ? TrxKurikulum::toAdd() : TrxKurikulum::toAdd($model->mata_kuliah_id)); ?>
                         <?php echo $form->error($model,'mata_kuliah_id'); ?>
                 </div>
 
@@ -106,19 +106,23 @@ $('#TrxKurikulum_isRuang').click(function(){
                 
             </div>
             
-            <div style="background-color: blue;" class="span-6">
+        </div>
+        
+        <div class="span-5" style="margin-left: 100px;">
+            
+            <div style="" class="span-5">
                 
-                <?php echo CHtml::checkBox("TrxKurikulum[isHari]", TrxHariKurikulum::model()->isChecked() ? true : false); ?>
+                <?php echo CHtml::checkBox("TrxKurikulum[isHari]", TrxHariKurikulum::model()->isChecked($model->id) ? true : false); ?>
                 Tentukan Hari perkuliahan
                 
-                <div class="row" id="rowHari" style="display:<?php echo TrxHariKurikulum::model()->isChecked() ? "block" : "none"; ?>;">
+                <div class="row" id="rowHari" style="display:<?php echo TrxHariKurikulum::model()->isChecked($model->id) ? "block" : "none"; ?>;">
                         <?php echo CHtml::label("Hari perkuliahan", "data");?>
                         <?php echo CHtml::dropDownList("TrxKurikulum[hari]", "TrxKurikulum_hari", TrxHariKurikulum::toAdd(), array('multiple'=>'multiple')) ?>
                 </div>
                 
             </div>
             
-            <div style="background-color: green;" class="span-6">
+            <div style="" class="span-5">
                 
                 <?php echo CHtml::checkBox("TrxKurikulum[isAtribut]", TrxAtributKurikulum::model()->isChecked() ? true : false); ?>
                 Tentukan Ruang Kelas (atribut)
@@ -130,7 +134,7 @@ $('#TrxKurikulum_isRuang').click(function(){
                 
             </div>
 
-            <div style="background-color: red;" class="span-6">
+            <div style="" class="span-5">
                 
                 <?php echo CHtml::checkBox("TrxKurikulum[isRuang]", TrxRuangKurikulum::model()->isChecked() ? true : false); ?>
                 Tentukan Ruang Kelas (Ruang Kelas)
@@ -142,15 +146,9 @@ $('#TrxKurikulum_isRuang').click(function(){
                 
             </div>
 
-            
-            <?php 
-                
-                //echo CHtml::dropDownList("test", "test", CHtml::listData(Atribut::model()->findAll(), "id", "atribut"), array('multiple'=>'multiple'));
-                
-            ?>
-            
         </div>
-	<div class="row buttons">
+        
+	<div class="row buttons span-15">
 		<?php 
                     //echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); 
                     $this->widget('bootstrap.widgets.TbButton', array(

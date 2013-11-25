@@ -102,15 +102,12 @@ class TrxHariKurikulum extends CActiveRecord
 	}
         
         public static function toAdd(){
+                $result = array();
+                
                 $result = Yii::app()->db->createCommand("
-                    select h.id, h.hari
-                    from hari h
-                    where h.id != 7 and h.id not in (
-                           select t.hari_id
-                           from trx_hari_kurikulum t
-                           left join trx_kurikulum k on k.id = t.kurikulum_id
-                           where k.periode_id = ".penjadwalan::activePeriode()->id."
-                    )")->queryAll();
+                select h.id, h.hari
+                from hari h
+                where h.id != 7")->queryAll();
                 
                 $data = array();
                 
@@ -124,35 +121,51 @@ class TrxHariKurikulum extends CActiveRecord
                 return $data;
         }
         
-        public static function preLoaded(){
+        public static function preLoaded($param){
             $data = array();
             
             // preload from table => for update 
-            if(!isset($_REQUEST['TrxKurikulum'])){
-                $query = TrxHariKurikulum::model()->findAll("periode_id = ".penjadwalan::activePeriode()->id);
-                
-                if(count($query) != 0 ){
-                    foreach ($query as $per) {
-                        array_push($data, $per['hari_id']);
+            if($param != null){
+                 $query = Yii::app()->db->createCommand("
+                             select t.hari_id
+                             from trx_hari_kurikulum t
+                             left join trx_kurikulum k on k.id = t.kurikulum_id
+                             where k.periode_id = ".penjadwalan::activePeriode()->id)->queryAll();
+
+                 if(count($query) > 0 ){
+                       foreach ($query as $per) {
+                            array_push($data, $per['hari_id']);
+                        }
                     }
-                }
-                
-            }
-            
+            } 
             //preload from form => for insert
-            if(self::isChecked())
+            else{
+                if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['hari']))
                     foreach ($_REQUEST['TrxKurikulum']['hari'] as $key => $value) {
-                        array_push($data, $value);
+                            array_push($data, $value);
                     }
-            
+            }
+ 
             return implode(",", $data);
         }
         
-        public static function isChecked(){
+        public static function isChecked($param = null){
             
-            if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['isHari']))
-                if(isset($_REQUEST['TrxKurikulum']['hari']))
+            if($param != null){
+                $query = Yii::app()->db->createCommand("
+                    select count(t.hari_id)
+                    from trx_hari_kurikulum t
+                    left join trx_kurikulum k on k.id = t.kurikulum_id
+                    where k.periode_id = ".penjadwalan::activePeriode()->id)->queryScalar();
+                if($query > 0)
                     return true;
+            }
+            else{
+                if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['isHari']))
+                    if(isset($_REQUEST['TrxKurikulum']['hari']))
+                        return true;
+            
+            }
             
             return false;
         }

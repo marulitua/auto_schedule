@@ -62,9 +62,9 @@ class TrxKurikulumController extends Controller
 	 */
 	public function actionCreate()
 	{
-                if(isset($_REQUEST))
-                    print_r ($_REQUEST);
-                
+//                if(isset($_REQUEST))
+//                    print_r ($_REQUEST);
+//                
 		$model=new TrxKurikulum;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -73,8 +73,38 @@ class TrxKurikulumController extends Controller
 		if(isset($_POST['TrxKurikulum']))
 		{
 			$model->attributes=$_POST['TrxKurikulum'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			if($model->save()){
+                                //hari
+                                if(TrxHariKurikulum::model()->isChecked()){
+                                    foreach ($_REQUEST['TrxKurikulum']['hari'] as $key => $value) {
+                                        $new = new TrxHariKurikulum();
+                                        $new->kurikulum_id = $model->id;
+                                        $new->hari_id = $value;
+                                        $new->save();
+                                    }
+                                }
+                                //atribut
+                                if(TrxAtributKurikulum::model()->isChecked()){
+                                    foreach ($_REQUEST['TrxKurikulum']['atribut'] as $key => $value) {
+                                        $new = new TrxAtributKurikulum();
+                                        $new->kurikulum_id = $model->id;
+                                        $new->atribut_id = $value;
+                                        $new->save();
+                                    }
+                                }
+                            
+                                //ruang
+                                if(TrxRuangKurikulum::model()->isChecked()){
+                                    foreach ($_REQUEST['TrxKurikulum']['ruang'] as $key => $value) {
+                                        $new = new TrxRuangKurikulum();
+                                        $new->kurikulum_id = $model->id;
+                                        $new->ruang_kelas_id = $value;
+                                        $new->save();
+                                    }
+                                }
+                            
+                            	$this->redirect(array('view','id'=>$model->id));
+                        }
 		}
 
 		$this->render('create',array(
@@ -97,8 +127,46 @@ class TrxKurikulumController extends Controller
 		if(isset($_POST['TrxKurikulum']))
 		{
 			$model->attributes=$_POST['TrxKurikulum'];
-			if($model->save())
+			if($model->save()){
+                                //drop TrxHariKurikulum
+                                TrxHariKurikulum::model()->deleteAll("kurikulum_id = $model->id");
+                                //drop TrxAtributKurikulum
+                                TrxAtributKurikulum::model()->deleteAll("kurikulum_id = $model->id");
+                                //drop TrxRuangKurikulum
+                                TrxRuangKurikulum::model()->deleteAll("kurikulum_id = $model->id");
+                            
+                                //hari
+                                if(TrxHariKurikulum::model()->isChecked()){
+                                    foreach ($_REQUEST['TrxKurikulum']['hari'] as $key => $value) {
+                                        $new = new TrxHariKurikulum();
+                                        $new->kurikulum_id = $model->id;
+                                        $new->hari_id = $value;
+                                        $new->save();
+                                    }
+                                }
+                                //atribut
+                                if(TrxAtributKurikulum::model()->isChecked()){
+                                    foreach ($_REQUEST['TrxKurikulum']['atribut'] as $key => $value) {
+                                        $new = new TrxAtributKurikulum();
+                                        $new->kurikulum_id = $model->id;
+                                        $new->atribut_id = $value;
+                                        $new->save();
+                                    }
+                                }
+                            
+                                //ruang
+                                if(TrxRuangKurikulum::model()->isChecked()){
+                                    foreach ($_REQUEST['TrxKurikulum']['ruang'] as $key => $value) {
+                                        $new = new TrxRuangKurikulum();
+                                        $new->kurikulum_id = $model->id;
+                                        $new->ruang_kelas_id = $value;
+                                        $new->save();
+                                    }
+                                }
+                            
 				$this->redirect(array('view','id'=>$model->id));
+                                
+                        }
 		}
 
 		$this->render('update',array(
