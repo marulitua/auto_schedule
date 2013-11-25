@@ -105,12 +105,6 @@ class TrxRuangKurikulum extends CActiveRecord
                 $result = Yii::app()->db->createCommand("
                     select r.id, r.number
                     from ruang_kelas r
-                    where r.id not in (
-                            select t.ruang_kelas_id
-                            from trx_ruang_kurikulum t
-                            left join trx_kurikulum k on k.id = t.kurikulum_id
-                            where k.periode_id = ".penjadwalan::activePeriode()->id."
-                    )
                     ")->queryAll();
             
                 $data = array();
@@ -125,11 +119,11 @@ class TrxRuangKurikulum extends CActiveRecord
                 return $data;
         }
         
-        public static function preLoaded(){
+        public static function preLoaded($param){
             $data = array();
             
             // preload from table => for update 
-            if(!isset($_REQUEST['TrxKurikulum'])){
+            if($param != null){
                 $query = Yii::app()->db->createCommand("
                             select t.ruang_kelas_id
                             from trx_ruang_kurikulum t
@@ -143,22 +137,35 @@ class TrxRuangKurikulum extends CActiveRecord
                 }
                 
             }
-            
             //preload from form => for insert
-            if(self::isChecked())
-                    foreach ($_REQUEST['TrxKurikulum']['ruang'] as $key => $value) {
-                        array_push($data, $value);
-                    }
+            else{
+                if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['ruang']))
+                        foreach ($_REQUEST['TrxKurikulum']['ruang'] as $key => $value) {
+                            array_push($data, $value);
+                        }
+            }
             
             return implode(",", $data);
         }
         
-        public static function isChecked(){
-            
-            if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['isRuang']))
-                if(isset($_REQUEST['TrxKurikulum']['ruang']))
+        public static function isChecked($param = null){
+              
+            if($param != null){
+                $query = Yii::app()->db->createCommand("
+                    select count(t.ruang_kelas_id)
+                    from trx_ruang_kurikulum t
+                    left join trx_kurikulum k on k.id = t.kurikulum_id
+                    where k.periode_id = ".penjadwalan::activePeriode()->id)->queryScalar();
+                if($query > 0)
                     return true;
+            }
+            else{
+                if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['isRuang']))
+                    if(isset($_REQUEST['TrxKurikulum']['ruang']))
+                        return true;
+            }
             
             return false;
+            
         }
 }

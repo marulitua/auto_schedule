@@ -105,12 +105,6 @@ class TrxAtributKurikulum extends CActiveRecord
                 $result = Yii::app()->db->createCommand("
                     select a.id, a.atribut
                     from atribut a
-                    where a.id not in (
-                            select t.atribut_id
-                            from trx_atribut_kurikulum t
-                            left join trx_kurikulum k on k.id = t.kurikulum_id
-                            where k.periode_id = ".penjadwalan::activePeriode()->id."
-                    )
                     ")->queryAll();
             
                 $data = array();
@@ -125,11 +119,11 @@ class TrxAtributKurikulum extends CActiveRecord
                 return $data;
         }
         
-        public static function preLoaded(){
+        public static function preLoaded($param){
             $data = array();
             
             // preload from table => for update 
-            if(!isset($_REQUEST['TrxKurikulum'])){
+            if($param != null){
                 $query = Yii::app()->db->createCommand("
                             select t.atribut_id
                             from trx_atribut_kurikulum t
@@ -143,21 +137,33 @@ class TrxAtributKurikulum extends CActiveRecord
                 }
                 
             }
-            
             //preload from form => for insert
-            if(self::isChecked())
+            else{
+                if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['atribut']))
                     foreach ($_REQUEST['TrxKurikulum']['atribut'] as $key => $value) {
                         array_push($data, $value);
                     }
-            
+            }
+                    
             return implode(",", $data);
         }
         
-        public static function isChecked(){
+        public static function isChecked($param = null){
             
-            if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['isAtribut']))
-                if(isset($_REQUEST['TrxKurikulum']['atribut']))
+            if($param != null){
+                $query = Yii::app()->db->createCommand("
+                    select count(t.atribut_id)
+                    from trx_atribut_kurikulum t
+                    left join trx_kurikulum k on k.id = t.kurikulum_id
+                    where k.periode_id = ".penjadwalan::activePeriode()->id)->queryScalar();
+                if($query > 0)
                     return true;
+            }
+            else{
+                if(isset($_REQUEST['TrxKurikulum']) && isset($_REQUEST['TrxKurikulum']['isAtribut']))
+                    if(isset($_REQUEST['TrxKurikulum']['atribut']))
+                        return true;
+            }
             
             return false;
         }

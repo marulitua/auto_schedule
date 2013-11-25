@@ -35,7 +35,7 @@ $('#TrxKurikulum_isHari').click(function(){
 
 //Atribut
 $('#TrxKurikulum_atribut').select2();
-$('#TrxKurikulum_atribut').select2('val', [".TrxAtributKurikulum::model()->preLoaded()."]);
+$('#TrxKurikulum_atribut').select2('val', [".TrxAtributKurikulum::model()->preLoaded($model->id)."]);
 
 $('input[id^=s2id_au]').width(200);
 
@@ -46,7 +46,7 @@ $('#TrxKurikulum_isAtribut').click(function(){
 
 //Ruang
 $('#TrxKurikulum_ruang').select2();
-$('#TrxKurikulum_ruang').select2('val', [".TrxRuangKurikulum::model()->preLoaded()."]);
+$('#TrxKurikulum_ruang').select2('val', [".TrxRuangKurikulum::model()->preLoaded($model->id)."]);
 
 $('input[id^=s2id_au]').width(200);
 
@@ -124,10 +124,10 @@ $('#TrxKurikulum_isRuang').click(function(){
             
             <div style="" class="span-5">
                 
-                <?php echo CHtml::checkBox("TrxKurikulum[isAtribut]", TrxAtributKurikulum::model()->isChecked() ? true : false); ?>
+                <?php echo CHtml::checkBox("TrxKurikulum[isAtribut]", TrxAtributKurikulum::model()->isChecked($model->id) ? true : false); ?>
                 Tentukan Ruang Kelas (atribut)
                 
-                <div class="row" id="rowAtribut" style="display:<?php echo TrxAtributKurikulum::model()->isChecked() ? "block" : "none"; ?>;">
+                <div class="row" id="rowAtribut" style="display:<?php echo TrxAtributKurikulum::model()->isChecked($model->id) ? "block" : "none"; ?>;">
                         <?php echo CHtml::label("Atribut Kelas", "data");?>
                         <?php echo CHtml::dropDownList("TrxKurikulum[atribut]", "TrxKurikulum_atribut", TrxAtributKurikulum::toAdd(), array('multiple'=>'multiple')) ?>
                 </div>
@@ -136,10 +136,10 @@ $('#TrxKurikulum_isRuang').click(function(){
 
             <div style="" class="span-5">
                 
-                <?php echo CHtml::checkBox("TrxKurikulum[isRuang]", TrxRuangKurikulum::model()->isChecked() ? true : false); ?>
+                <?php echo CHtml::checkBox("TrxKurikulum[isRuang]", TrxRuangKurikulum::model()->isChecked($model->id) ? true : false); ?>
                 Tentukan Ruang Kelas (Ruang Kelas)
                 
-                <div class="row" id="rowRuang" style="display:<?php echo TrxRuangKurikulum::model()->isChecked() ? "block" : "none"; ?>;">
+                <div class="row" id="rowRuang" style="display:<?php echo TrxRuangKurikulum::model()->isChecked($model->id) ? "block" : "none"; ?>;">
                         <?php echo CHtml::label("Ruang Kelas", "data");?>
                         <?php echo CHtml::dropDownList("TrxKurikulum[ruang]", "TrxKurikulum_ruang", TrxRuangKurikulum::toAdd(), array('multiple'=>'multiple')) ?>
                 </div>
