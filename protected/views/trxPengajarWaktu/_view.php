@@ -10,19 +10,23 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('pengajar_id')); ?>:</b>
-	<?php echo CHtml::encode($data->pengajar_id); ?>
+	<?php echo CHtml::encode($data->pengajar->dosen->full_name); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('hari_id')); ?>:</b>
-	<?php echo CHtml::encode($data->hari_id); ?>
+	<?php echo CHtml::encode($data->hari->hari); ?>
 	<br />
-
+        <!--
 	<b><?php echo CHtml::encode($data->getAttributeLabel('start')); ?>:</b>
 	<?php echo CHtml::encode($data->start); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('end')); ?>:</b>
 	<?php echo CHtml::encode($data->end); ?>
+	<br />
+        -->
+        <b>Waktu:</b>
+	<?php echo CHtml::encode($data->waktu()); ?>
 	<br />
 
 

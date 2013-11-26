@@ -3,16 +3,16 @@
 /* @var $model TrxPengajarWaktu */
 
 $this->breadcrumbs=array(
-	'Trx Pengajar Waktus'=>array('index'),
-	'Create',
+	'Waktu Pengajar'=>array('index'),
+	'Tambah',
 );
 
 $this->menu=array(
-	array('label'=>'List TrxPengajarWaktu', 'url'=>array('index')),
-	array('label'=>'Manage TrxPengajarWaktu', 'url'=>array('admin')),
+	array('label'=>'Daftar Waktu Pengajar', 'url'=>array('index')),
+	array('label'=>'Manage Waktu Pengajar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create TrxPengajarWaktu</h1>
+<h1>Tambah Waktu Pengajar</h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

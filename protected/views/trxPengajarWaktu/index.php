@@ -3,16 +3,16 @@
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Trx Pengajar Waktus',
+	'Waktu Pengajar',
 );
 
 $this->menu=array(
-	array('label'=>'Create TrxPengajarWaktu', 'url'=>array('create')),
-	array('label'=>'Manage TrxPengajarWaktu', 'url'=>array('admin')),
+	array('label'=>'Tambah Waktu Pengajar', 'url'=>array('create')),
+	array('label'=>'Manage Waktu Pengajar', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Trx Pengajar Waktus</h1>
+<h1>Waktu Pengajar</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

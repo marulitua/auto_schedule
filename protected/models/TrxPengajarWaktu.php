@@ -93,9 +93,14 @@ class TrxPengajarWaktu extends CActiveRecord
 		$criteria->compare('hari_id',$this->hari_id);
 		$criteria->compare('start',$this->start);
 		$criteria->compare('end',$this->end);
+                $criteria->join = "left join trx_pengajar p on p.id = pengajar_id";
+                $criteria->addCondition('p.periode_id = '.penjadwalan::activePeriode()->id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+                        'pagination' => array(
+                            'pageSize' => 20
+                        )
 		));
 	}
 
@@ -144,5 +149,9 @@ class TrxPengajarWaktu extends CActiveRecord
         
         public function compositeUniqueKeysValidator() {
             $this->validateCompositeUniqueKeys();
+        }
+        
+        public function waktu(){
+            return $this->start.":00 - ".$this->end.":00";
         }
 }
