@@ -17,50 +17,27 @@
 //            Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl . '/js/alertify.min.js');
             ?>
 
+            <!--
+            
             <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/js/alertify.min.js"></script>
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/alertify.css" />
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/alertify.default.css"/>
-            <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css"/>
+             
+            -->
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-
+                      
+            <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css"/>
+            
             <?php
                 //$baseScriptUrl=Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('ext.bootstrap.assets'));
 //                Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/select2.min.js',CClientScript::POS_END);  
 //                Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/css/select2.css',CClientScript::POS_END);  
             ?>
 
-            <script type="text/javascript">
-
-                document.createElement("nav");
-                document.createElement("header");
-                document.createElement("article");
-                document.createElement("section");
-                document.createElement("footer");
-
-                "use strict";
-                var
-                        d = Alertify.dialog,
-                        l = Alertify.log,
-                        $ = Alertify.get,
-                        reset = function() {
-                    $("toggleCSS").href = "css/alertify.default.css";
-
-                    d.labels.ok = "OK";
-                    d.labels.cancel = "Cancel";
-                    d.buttonReverse = false;
-                    d.buttonFocus = "ok";
-                    l.delay = 5000;
-                };
-            </script>
+          
 
             <title><?php echo CHtml::encode($this->pageTitle); ?></title>
-
-            <link rel="stylesheet" type="text/css">
-
-
-
-            </link>
 
 
     </head>

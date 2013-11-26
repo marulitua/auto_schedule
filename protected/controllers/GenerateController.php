@@ -33,30 +33,30 @@ class GenerateController extends Controller
 		);
 	}
 	*/
-        
-       public function actionsLoading() {
-           $this->render("loading");
-       }
-
-
-       public function actionLoading(){
-           $this->render('loading');
-       }
        
        public function actionDoGenerate(){
-           $data = penjadwalan::Verifying();
            
-           if(count($data) > 0){
-               $this->render("warning", array("data" => $data));
+           // jika sedang menyusun jadwal tampilkan loading
+           if(penjadwalan::IsRunning())
+           {
+               $this->render('loading');
            }
+           // jika tidak lakukan generate
            else{
-               $data = penjadwalan::Generate();
-               
-               if($data['0'] == '1')
-                    $this->render("loading");
-               else{
-                    $this->render("error", array("data"=>$data));
-               }
+                $data = penjadwalan::Verifying();
+           
+                if(count($data) > 0){
+                    $this->render("warning", array("data" => $data));
+                }
+                else{
+                    $data = penjadwalan::Generate();
+
+                    if($data['0'] == "true")
+                        $this->render('loading');
+                    else{
+                         $this->render("error", array("data"=>$data));
+                    }
+                }
            }
        }
        
@@ -66,5 +66,4 @@ class GenerateController extends Controller
            else
                echo penjadwalan::renderJSON(array("false"));
        }
-       
 }

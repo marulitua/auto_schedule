@@ -13,10 +13,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
 
 /**
  *
@@ -79,6 +75,8 @@ public class Auto_schedule_back_end {
                             bw.write("true" + "\n");
                             td = new MyThread(startTime);
                             td.start();
+                            
+                            msg = "true";
                         } else {
                             bw.write("true");
                         }
