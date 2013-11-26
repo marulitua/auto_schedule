@@ -7,62 +7,6 @@
 
 class penjadwalan extends CComponent {
 
-    public static function selected2($param, $id, $name, $data = FALSE) {
-
-        $string = "<select multiple id=\"$id\" name=\"$name\" style=\"width: 300px;\" >";
-
-        if ($param) {
-            foreach ($param as $key => $value) {
-                //<option value="11">Manajemen Keuangan 2</option>
-
-                if ($data) {
-                    if (in_array($key, $data))
-                        $string .= "<option selected value=\"$key\">$value</option>";
-                    else
-                        $string .= "<option value=\"$key\">$value</option>";
-                }
-                else
-                    $string .= "<option value=\"$key\">$value</option>";
-            }
-        }
-
-        $string .= "</select>";
-
-        self::scriptReady($id);
- 
-        return $string;
-    }
-
-    public static function scriptReady($id) {
-        Yii::app()->clientScript->registerScript("$id", "$(\"#$id\").select2();");
-    }
-
-    public static function dropDownList($param, $id, $name, $data = FALSE) {
-
-        $string = "<select id=\"$id\" name=\"$name\">";
-
-        if ($param) {
-            foreach ($param as $key => $value) {
-                //<option value="11">Manajemen Keuangan 2</option>
-
-                if ($data) {
-                    if (in_array($key, $data))
-                        $string .= "<option selected value=\"$key\">$value</option>";
-                    else
-                        $string .= "<option value=\"$key\">$value</option>";
-                }
-                else
-                    $string .= "<option value=\"$key\">$value</option>";
-            }
-        }
-
-        $string .= "</select>";
-
-        self::scriptReady($id);
-
-        return $string;
-    }
-
     public static function time() {
         $result = array();
 
@@ -71,48 +15,6 @@ class penjadwalan extends CComponent {
         }
 
         return $result;
-    }
-
-    public static function check() {
-
-        $result = array();
-
-        if (Periode::model()->count('flag = 1') == 0)
-            array_push($result, "Tentukan Periode");
-        else {
-            if (TrxKurikulum::model()->count('periode_id = ' . Periode::model()->active()->id . '') == 0)
-                array_push($result, "Kurikulum belum ditentukan");
-
-            if (TrxDosen::model()->count('periode_id = ' . Periode::model()->active()->id . '') == 0)
-                array_push($result, "Pengajar belum ditentukan");
-            else {
-                
-                $sql = Yii::app()->db->createCommand('select c.* from findMatakuliahTanpaDosen c')->queryAll();
-                foreach ($sql as $a)
-                    array_push ($result, "Mata kuliah ".$a['mata_kuliah']." belum ada pengajarnya");                
-            }
-            
-            if (TrxDosenTime::model()->count() == 0)
-                array_push($result, "Waktu pengajar belum ditentukan");
-            else{
-                $sql = Yii::app()->db->createCommand('select c.* from findDosenTanpaWaktu c')->queryAll();
-                foreach ($sql as $a)
-                    array_push ($result, "Dosen ".$a['full_name']." belum memili detail waktu");             
-            }
-        }
-
-        return $result;
-    }
-    
-    public static function isPraktek(){
-           
-        if(isset($_POST['MataKuliah'])){
-            if($_POST['MataKuliah']['praktek'] == '1'){
-                return true;
-            }
-        }
-        
-        return false;
     }
     
     public static function activePeriode(){
@@ -161,6 +63,129 @@ class penjadwalan extends CComponent {
                 return true;
         
         return false;
+    }
+    
+    public static function IsRunning() {
+        $return = false;
+        $PORT = 20222; //the port on which we are connecting to the "remote" machine
+        $HOST = "localhost"; //the ip of the remote machine (in this case it's the same machine)
+
+        $sock = socket_create(AF_INET, SOCK_STREAM, 0) //Creating a TCP socket
+                or die("error: could not create socket\n");
+
+//         $succ = socket_connect($sock, $HOST, $PORT) //Connecting to to server using that socket
+//                 or die("error: could not connect to host\n");
+
+        $succ = @socket_connect($sock, $HOST, $PORT); //Connecting to to server using that socket
+        //or die("error: could not connect to host\n");
+
+        if ($succ === FALSE) {
+            //$return = false;
+        } else {
+            //$text = "1"; //start
+            $text = "0"; //test
+
+            socket_write($sock, $text . "\n", strlen($text) + 1) //Writing the text to the socket
+                    or die("error: failed to write to socket\n");
+
+            $reply = socket_read($sock, 10000, PHP_NORMAL_READ) //Reading the reply from socket
+                    or die("error: failed to read from socket\n");
+
+            if(substr($reply, 0, -1) == "true")
+                    $return = true;
+            
+        }
+        
+        return $return;
+    }
+    
+    public static function Generate() {
+        $data = array();
+        $PORT = 20222; //the port on which we are connecting to the "remote" machine
+        $HOST = "localhost"; //the ip of the remote machine (in this case it's the same machine)
+
+        $sock = socket_create(AF_INET, SOCK_STREAM, 0) //Creating a TCP socket
+                or die("error: could not create socket\n");
+
+//         $succ = socket_connect($sock, $HOST, $PORT) //Connecting to to server using that socket
+//                 or die("error: could not connect to host\n");
+
+        $succ = @socket_connect($sock, $HOST, $PORT); //Connecting to to server using that socket
+        //or die("error: could not connect to host\n");
+
+        if ($succ === FALSE) {
+            array_push($data, "-1");
+        } else {
+            $text = "1"; //start
+            //$text = "0"; //test
+
+            socket_write($sock, $text . "\n", strlen($text) + 1) //Writing the text to the socket
+                    or die("error: failed to write to socket\n");
+
+            $reply = socket_read($sock, 10000, PHP_NORMAL_READ) //Reading the reply from socket
+                    or die("error: failed to read from socket\n");
+
+            array_push($data, substr($reply, 0, -1));
+
+        }
+        return $data;
+    }
+    
+    public static function Verifying(){
+        $result = array();
+
+        // apakah semua mata kuliah sudah memiliki dosen pengampu
+        $data = Yii::app()->db->createCommand(
+                "select m.mata_kuliah, m.mata_kuliah_code
+                from trx_kurikulum t
+                left join mata_kuliah m on m.id = t.mata_kuliah_id
+                where t.periode_id = ".penjadwalan::activePeriode()->id." and m.id not in (
+                        select DISTINCT p.mata_kuliah_id 
+                        from trx_pengajar_mata_kuliah p
+                        left join trx_pengajar t on t.id = p.pengajar_id
+                        where t.periode_id = ".penjadwalan::activePeriode()->id."
+                )"
+                )->queryAll();
+        
+        if(count($data) > 0){
+            foreach ($data as $peer) {
+                array_push($result, 'Mata kuliah '.ucfirst($peer["mata_kuliah"]).' ( '.$peer['mata_kuliah_code'].' ) belum memiliki dosen pengampu');
+            }
+        }
+        
+        // apakah semua dosen pengampu sudah memiliki data kesedian waktu mengajar
+        
+        $data = Yii::app()->db->createCommand(
+                "select d.full_name
+                from trx_pengajar p
+                left join dosen d on d.id = p.dosen_id
+                where p.periode_id = ".penjadwalan::activePeriode()->id." and p.id not in  (
+                        select DISTINCT t.pengajar_id
+                        from trx_pengajar_waktu t
+                        left join trx_pengajar r on r.id = t.pengajar_id
+                        where r.periode_id = ".penjadwalan::activePeriode()->id."
+                )"
+                )->queryAll();
+        
+        if(count($data) > 0){
+            foreach ($data as $peer) {
+                array_push($result, 'Dosen '.ucfirst($peer["full_name"]).' belum memiliki data waktu kesedian mengajar');
+            }
+        }
+        
+        return $result;
+    }
+    
+    public static function renderJSON($data) {
+        header('Content-type: application/json');
+        echo CJSON::encode($data);
+
+        foreach (Yii::app()->log->routes as $route) {
+            if ($route instanceof CWebLogRoute) {
+                $route->enabled = false; // disable any weblogroutes
+            }
+        }
+        Yii::app()->end();
     }
 }
 

@@ -7,7 +7,7 @@ class GenerateController extends Controller
 		$this->render('index');
 	}
 
-	// Uncomment the following methods and override them if needed
+        // Uncomment the following methods and override them if needed
 	/*
 	public function filters()
 	{
@@ -33,4 +33,38 @@ class GenerateController extends Controller
 		);
 	}
 	*/
+        
+       public function actionsLoading() {
+           $this->render("loading");
+       }
+
+
+       public function actionLoading(){
+           $this->render('loading');
+       }
+       
+       public function actionDoGenerate(){
+           $data = penjadwalan::Verifying();
+           
+           if(count($data) > 0){
+               $this->render("warning", array("data" => $data));
+           }
+           else{
+               $data = penjadwalan::Generate();
+               
+               if($data['0'] == '1')
+                    $this->render("loading");
+               else{
+                    $this->render("error", array("data"=>$data));
+               }
+           }
+       }
+       
+       public function actionIsRunning(){           
+           if(penjadwalan::IsRunning())
+               echo penjadwalan::renderJSON(array("true"));
+           else
+               echo penjadwalan::renderJSON(array("false"));
+       }
+       
 }
