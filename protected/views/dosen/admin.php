@@ -42,6 +42,7 @@ $('.search-form form').submit(function(){
                 ),
 		'full_name',
 		'NI',
+                'batas_lantai',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
                         'htmlOptions'=>array('style'=>'width: 100px'),

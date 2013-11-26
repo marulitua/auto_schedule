@@ -31,6 +31,12 @@
 		<?php echo $form->error($model,'NI'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->labelEx($model,'batas_lantai'); ?>
+		<?php echo $form->textField($model,'batas_lantai',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'batas_lantai'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php 
                     //echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); 

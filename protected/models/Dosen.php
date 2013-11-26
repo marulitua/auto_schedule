@@ -7,11 +7,10 @@
  * @property integer $id
  * @property string $full_name
  * @property string $NI
+ * @property integer $batas_lantai
  *
  * The followings are the available model relations:
- * @property TrxDosenMakul[] $trxDosenMakuls
- * @property TrxDosenProdi[] $trxDosenProdis
- * @property TrxJadwal[] $trxJadwals
+ * @property TrxPengajar[] $trxPengajars
  */
 class Dosen extends CActiveRecord
 {
@@ -32,11 +31,11 @@ class Dosen extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('full_name, NI', 'required'),
+			array('batas_lantai', 'numerical', 'integerOnly'=>true),
 			array('full_name, NI', 'length', 'max'=>50),
-                        array('NI', 'unique'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, full_name, NI', 'safe', 'on'=>'search'),
+			array('id, full_name, NI, batas_lantai', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,9 +47,7 @@ class Dosen extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'trxDosenMakuls' => array(self::HAS_MANY, 'TrxDosenMakul', 'dosen'),
-			'trxDosenProdis' => array(self::HAS_MANY, 'TrxDosenProdi', 'dosen'),
-			'trxJadwals' => array(self::HAS_MANY, 'TrxJadwal', 'dosen'),
+			'trxPengajars' => array(self::HAS_MANY, 'TrxPengajar', 'dosen_id'),
 		);
 	}
 
@@ -61,8 +58,9 @@ class Dosen extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'full_name' => 'Nama Lengkap',
+			'full_name' => 'Full Name',
 			'NI' => 'Ni',
+			'batas_lantai' => 'Batas Lantai',
 		);
 	}
 
@@ -87,12 +85,13 @@ class Dosen extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('full_name',$this->full_name,true);
 		$criteria->compare('NI',$this->NI,true);
+		$criteria->compare('batas_lantai',$this->batas_lantai);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
                         'pagination' => array(
-                                'pageSize' => 20,
-                            ),
+                            'pageSize' => 20,
+                        )
 		));
 	}
 

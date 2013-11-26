@@ -46,6 +46,10 @@ $('.search-form form').submit(function(){
                   'value' => '$data->mataKuliah->mata_kuliah',
                   'filter' => TrxKurikulum::createFilter(),
                 ),
+                array(
+                  'header' => 'Kode Mata Kuliah',
+                  'value' => '$data->mataKuliah->mata_kuliah_code',
+                ),
 // 		'jumlah_kelas',
                 array(
                     'name' => 'jumlah_kelas',

@@ -24,5 +24,6 @@ $this->menu=array(
 		'id',
 		'full_name',
 		'NI',
+                'batas_lantai',
 	),
 )); ?>

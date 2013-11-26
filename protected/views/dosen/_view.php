@@ -17,5 +17,9 @@
 	<?php echo CHtml::encode($data->NI); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('batas_lantai')); ?>:</b>
+	<?php echo CHtml::encode($data->batas_lantai); ?>
+	<br />
+
 
 </div>
