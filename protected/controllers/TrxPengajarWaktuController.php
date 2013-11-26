@@ -1,6 +1,6 @@
 <?php
 
-class TrxPengajarController extends Controller
+class TrxPengajarWaktuController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,28 +62,16 @@ class TrxPengajarController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new TrxPengajar;
+		$model=new TrxPengajarWaktu;
 
 		// Uncomment the following line if AJAX validation is needed
-		$this->performAjaxValidation($model);
+                $this->performAjaxValidation($model);
 
-		if(isset($_POST['TrxPengajar']))
+		if(isset($_POST['TrxPengajarWaktu']))
 		{
-			$model->attributes=$_POST['TrxPengajar'];
-			if($model->save()){
-                            
-                            //hari
-                            if(TrxPengajarMataKuliah::model()->isChecked()){
-                                foreach ($_REQUEST['TrxPengajar']['mataKuliah'] as $key => $value) {
-                                    $new = new TrxPengajarMataKuliah();
-                                    $new->pengajar_id = $model->id;
-                                    $new->mata_kuliah_id = $value;
-                                    $new->save();
-                                }
-                            }
-                            
-                            $this->redirect(array('view','id'=>$model->id));
-                        }
+			$model->attributes=$_POST['TrxPengajarWaktu'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -103,25 +91,11 @@ class TrxPengajarController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model);
 
-		if(isset($_POST['TrxPengajar']))
+		if(isset($_POST['TrxPengajarWaktu']))
 		{
-			$model->attributes=$_POST['TrxPengajar'];
-			if($model->save()){
-                            //drop TrxPengajarMataKuliah
-                            TrxPengajarMataKuliah::model()->deleteAll("pengajar_id = $model->id");
-                            
-                            //mata kuliah
-                            if(TrxPengajarMataKuliah::model()->isChecked()){
-                                foreach ($_REQUEST['TrxPengajar']['mataKuliah'] as $key => $value) {
-                                    $new = new TrxPengajarMataKuliah();
-                                    $new->pengajar_id = $model->id;
-                                    $new->mata_kuliah_id = $value;
-                                    $new->save();
-                                }
-                            }
-                            
-                            $this->redirect(array('view','id'=>$model->id));
-                        }
+			$model->attributes=$_POST['TrxPengajarWaktu'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(
@@ -136,12 +110,6 @@ class TrxPengajarController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-                //drop TrxPengajarMataKuliah
-                TrxPengajarMataKuliah::model()->deleteAll("pengajar_id = $id");
-                
-                //drop TrxPengajarWaktu
-                TrxPengajarWaktu::model()->deleteAll("pengajar_id = $id");
-                
 		$this->loadModel($id)->delete();
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -154,7 +122,7 @@ class TrxPengajarController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('TrxPengajar');
+		$dataProvider=new CActiveDataProvider('TrxPengajarWaktu');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -165,10 +133,10 @@ class TrxPengajarController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new TrxPengajar('search');
+		$model=new TrxPengajarWaktu('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['TrxPengajar']))
-			$model->attributes=$_GET['TrxPengajar'];
+		if(isset($_GET['TrxPengajarWaktu']))
+			$model->attributes=$_GET['TrxPengajarWaktu'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -179,12 +147,12 @@ class TrxPengajarController extends Controller
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return TrxPengajar the loaded model
+	 * @return TrxPengajarWaktu the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id)
 	{
-		$model=TrxPengajar::model()->findByPk($id);
+		$model=TrxPengajarWaktu::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -192,11 +160,11 @@ class TrxPengajarController extends Controller
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param TrxPengajar $model the model to be validated
+	 * @param TrxPengajarWaktu $model the model to be validated
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='trx-pengajar-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='trx-pengajar-waktu-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

@@ -89,6 +89,8 @@ return array(
         // this is used in contact page
         'adminEmail' => 'webmaster@example.com',
         'maxsks' => 5,
+        'minHour' => 8,
+        'maxHour' => 18,
     ),
     //'language'=>'id',
     'behaviors' => array(

@@ -66,19 +66,9 @@ class penjadwalan extends CComponent {
     public static function time() {
         $result = array();
 
-        $result['08:00'] = "08:00";
-        $result['09:00'] = "09:00";
-        $result['10:00'] = "10:00";
-        $result['11:00'] = "11:00";
-        $result['12:00'] = "12:00";
-        $result['13:00'] = "13:00";
-        $result['14:00'] = "14:00";
-        $result['15:00'] = "15:00";
-        $result['16:00'] = "16:00";
-        $result['17:00'] = "17:00";
-        $result['18:00'] = "18:00";
-        $result['19:00'] = "19:00";
-        $result['20:00'] = "20:00";
+        for($i = Yii::app()->params->minHour; $i <= Yii::app()->params->maxHour; $i++){
+            $result[$i] = $i.":00";
+        }
 
         return $result;
     }
@@ -162,7 +152,16 @@ class penjadwalan extends CComponent {
         
         return false;
     }
-
+    
+    public static function isEnableBtnWaktuPengajar(){
+         if(!self::isEnableBtnPeriode())
+            return true;
+         else
+             if(TrxPengajar::model()->count("periode_id = ".self::activePeriode()->id) == '0')
+                return true;
+        
+        return false;
+    }
 }
 
 ?>

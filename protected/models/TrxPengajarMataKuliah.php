@@ -107,6 +107,11 @@ class TrxPengajarMataKuliah extends CActiveRecord
                 $result = Yii::app()->db->createCommand("
                 select m.id, m.mata_kuliah
                 from mata_kuliah m
+                where m.id in (
+                    select t.mata_kuliah_id
+                    from trx_kurikulum t
+                    where t.periode_id = ".penjadwalan::activePeriode()->id."
+                )
                 ")->queryAll();
                 
                 $data = array();

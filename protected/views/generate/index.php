@@ -139,25 +139,26 @@ $this->pageTitle = Yii::app()->name;
             )); ?>
          </div>
     </div>
-   <!-- <div class="span-5" id="os">
+    <div class="span-5" id="os">
         <div class="page" style="margin-top: 20px;margin-bottom: 20px;"> 
-            <?php 
-//            $this->widget('bootstrap.widgets.TbButton', array(
-//                'type'=>'primary',
-//                'id' => 'btnWaktu',
-//                'label'=>'4. Tentukan Waktu Pengajar',
-//                'block'=>true,
-//                'icon' => 'time',
-//                'buttonType' => 'submit',
-//                'htmlOptions' => array(
-//                        'style' => 'height:50px;'
-//                ),
-//                //'url' => 'asdasd'
-//            )); 
+            <?php             
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'type'=>'primary',
+                'id' => 'btnWaktu',
+                'label'=>'4. Tentukan Waktu Pengajar',
+                'block'=>true,
+                'icon' => 'time',
+                'disabled' => penjadwalan::isEnableBtnWaktuPengajar(),
+                'buttonType' => 'submit',
+                'htmlOptions' => array(
+                        'submit' => Yii::app()->createUrl('trxPengajarWaktu/admin'),
+                        'style' => 'height:50px;'
+                ),
+                //'url' => 'asdasd'
+            )); 
             ?>
          </div>
     </div>
-    -->
     <div class="span-5" style="margin-left:16%;margin-top: 20px;margin-bottom: 20px;">
    
         <?php
