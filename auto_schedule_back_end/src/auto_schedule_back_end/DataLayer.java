@@ -32,6 +32,8 @@ public class DataLayer {
     int periode;
     
     ArrayList<RuangKelas> listRuang = new ArrayList<>();
+    ArrayList<Kurikulum> listKurikulum = new ArrayList<>();
+    ArrayList<Dosen> listDosen = new ArrayList<>();
 
     public DataLayer() {
         try {
@@ -70,18 +72,124 @@ public class DataLayer {
               + "where t.ruang_kelas_id = r.id ) as atribut from ruang_kelas r"
             );
             
+            int id;
+            int praktek;
+            String atribut;
+            RuangKelas ruang;
             while (rs.next()) {
-                int id = rs.getInt(1);
-                int praktek = rs.getInt(2);
-                String atribut = rs.getString(3);
+                id = rs.getInt(1);
+                praktek = rs.getInt(2);
+                atribut = rs.getString(3);
 
-                RuangKelas ruang;
-                if(atribut == null)
-                    ruang = new RuangKelas(id, praktek);
-                else
-                    ruang = new RuangKelas(id, praktek, atribut);
+                ruang = new RuangKelas(id, praktek, atribut);
                
                 listRuang.add(ruang);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataLayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void getDosen() {
+        try {
+            Statement ps = con.createStatement();
+            ResultSet rs = ps.executeQuery
+            (
+                "select t.dosen_id, d.batas_lantai,\n" +
+                "(\n" +
+                "select GROUP_CONCAT(m.mata_kuliah_id)\n" +
+                "from trx_pengajar_mata_kuliah m\n" +
+                "where m.pengajar_id = t.id\n" +
+                ") \n" +
+                "as mata_kuliah,\n" +
+                "(\n" +
+                "select GROUP_CONCAT(CONCAT_WS('-', w.hari_id ,w.start , w.end))\n" +
+                "from trx_pengajar_waktu w\n" +
+                "where w.pengajar_id = t.id\n" +
+                ") as waktu\n" +
+                "from trx_pengajar t \n" +
+                "left join dosen d on d.id = t.dosen_id\n" +
+                "where t.periode_id = (\n" +
+                "select p.id\n" +
+                "from periode p\n" +
+                "where p.finished_time is null\n" +
+                ")"
+            );
+            
+            int id;
+            int lantai;
+            String mataKuliah;
+            String waktu;
+            
+            Dosen dosen;
+            
+            while (rs.next()) {
+                id = rs.getInt(1);
+                lantai = rs.getInt(2);
+                mataKuliah = rs.getString(3);
+                waktu = rs.getString(4);
+
+                dosen = new Dosen(id, lantai, mataKuliah, waktu);
+               
+                listDosen.add(dosen);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataLayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void getKurikulum(){
+        try {
+            Statement ps = con.createStatement();
+            ResultSet rs = ps.executeQuery
+            (
+                "select t.id, t.mata_kuliah_id, \n" +
+            "		 t.jumlah_kelas,\n" +
+            "		 m.praktek,\n" +
+            "		 (\n" +
+            "		 	select GROUP_CONCAT(h.hari_id)\n" +
+            "		 	from trx_hari_kurikulum h\n" +
+            "		 	where h.kurikulum_id = t.id\n" +
+            "		 ) as hari,\n" +
+            "		 (\n" +
+            "		 	select GROUP_CONCAT(r.ruang_kelas_id)\n" +
+            "		 	from trx_ruang_kurikulum r\n" +
+            "		 	where r.kurikulum_id = t.id\n" +
+            "		 ) as ruang,\n" +
+            "		 (\n" +
+            "		 	select GROUP_CONCAT(a.atribut_id)\n" +
+            "		 	from trx_atribut_kurikulum a\n" +
+            "		 	where a.kurikulum_id = t.id\n" +
+            "		 ) as atribut	\n" +
+            "from trx_kurikulum t\n" +
+            "left JOIN mata_kuliah m on m.id = t.mata_kuliah_id\n" +
+            "where t.periode_id = (\n" +
+            "	select p.id\n" +
+            "	from periode p\n" +
+            "	where p.finished_time is null \n" +
+            ")"
+            );
+            
+            int id;
+            int mata_kuliah_id;
+            int jumlah_kelas;
+            int praktek;
+            String hari;
+            String ruang;
+            String atribut;
+            Kurikulum kurikulum;
+            
+            while (rs.next()) {
+                id = rs.getInt(1);
+                mata_kuliah_id = rs.getInt(2);
+                jumlah_kelas = rs.getInt(3);
+                praktek = rs.getInt(4);
+                hari = rs.getString(5);
+                ruang = rs.getString(6);
+                atribut = rs.getString(7);
+
+                kurikulum = new Kurikulum(id, mata_kuliah_id, jumlah_kelas, praktek, hari, ruang, atribut);
+                listKurikulum.add(kurikulum);
             }
         } catch (SQLException ex) {
             Logger.getLogger(DataLayer.class.getName()).log(Level.SEVERE, null, ex);

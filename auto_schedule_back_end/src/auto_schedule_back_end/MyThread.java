@@ -17,14 +17,10 @@ public class MyThread extends Thread {
     int maxTime = 18;
     long startTime;
     int anchor = 0;
-//    ArrayList<DosenTime> listDosen = new ArrayList<>();
-//    ArrayList<Kurikulum> listKurikulum = new ArrayList<>();
-//    ArrayList<RuangKelas> listRuang = new ArrayList<>();
-//    ArrayList<Possible> listPossibles = new ArrayList<>();
-//    ArrayList<Possible> finalSolutions = new ArrayList<>();
-//    ArrayList<Kurikulum> listGagal = new ArrayList<>();
     
     ArrayList<RuangKelas> listRuang = new ArrayList<>(); 
+    ArrayList<Kurikulum> listKurikulum = new ArrayList<>();
+    ArrayList<Dosen> listDosen = new ArrayList<>();
     
     DataLayer dao = new DataLayer();
     
@@ -41,9 +37,20 @@ public class MyThread extends Thread {
         
         
         //get data
+        
         dao.getRuang();
         listRuang = dao.listRuang;
         
+        System.out.println("ruang size = "+listRuang.size());
         
+        dao.getKurikulum();
+        listKurikulum = dao.listKurikulum;
+        
+        System.out.println("kurikulum size = "+listKurikulum.size());
+        
+        dao.getDosen();
+        listDosen = dao.listDosen;
+        
+        System.out.println("dosen size = "+listDosen.size());
     }
 }

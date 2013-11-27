@@ -16,24 +16,18 @@ public final class RuangKelas {
     private boolean praktek;
     private ArrayList<Integer> atribut = new ArrayList<Integer>();
     
-    public RuangKelas(int Kelas, int Praktek){
-        setId(Kelas);
-        if(Praktek == 1)
-            setPraktek(true);
-        else
-            setPraktek(false);
-    }
-    
     public RuangKelas(int Kelas, int Praktek, String atributStr){
         setId(Kelas);
         if(Praktek == 1)
             setPraktek(true);
         else
             setPraktek(false);
-        
-        String[] out = atributStr.split(",");
-        for (int i = 0; i < out.length; i++) {
-             atribut.add(Integer.parseInt(out[i]));
+    
+        if(atributStr != null){
+            String[] out = atributStr.split(",");
+            for (int i = 0; i < out.length; i++) {
+                 atribut.add(Integer.parseInt(out[i]));
+            }
         }
     }
     
