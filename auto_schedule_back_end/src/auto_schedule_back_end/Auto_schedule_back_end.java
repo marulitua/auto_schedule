@@ -55,15 +55,9 @@ public class Auto_schedule_back_end {
 
                     //write log
                     MsgLog.write("php sent : " + line);
-//                    int param = Integer.parseInt(line);
-//                    param *= param;
-//                    bw.write(Integer.toString(param) + "\n");
-//                 
                     String msg = "";
-//
                     if ("0".equals(line)) {
                         //check doang
-                        
                         if(td.isAlive())
                             msg = "true";
                         else
@@ -81,8 +75,6 @@ public class Auto_schedule_back_end {
                             bw.write("true");
                         }
                     }
-//                    bw.write(td.isAlive()+"\n");
-//                    bw.write(currentTime + "\n");
                     bw.flush();
                     MsgLog.write("java sent : " + msg);
                 }

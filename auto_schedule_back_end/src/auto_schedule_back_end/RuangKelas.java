@@ -6,6 +6,7 @@
 
 package auto_schedule_back_end;
 
+import java.util.ArrayList;
 /**
  *
  * @author maruli
@@ -13,27 +14,29 @@ package auto_schedule_back_end;
 public final class RuangKelas {
     private int id;
     private boolean praktek;
-//    private int jamMulai;
-//    private int day;
+    private ArrayList<Integer> atribut = new ArrayList<Integer>();
     
-    public RuangKelas(int Kelas){
+    public RuangKelas(int Kelas, int Praktek){
         setId(Kelas);
+        if(Praktek == 1)
+            setPraktek(true);
+        else
+            setPraktek(false);
     }
     
-    public RuangKelas(int Kelas, boolean Praktek){
+    public RuangKelas(int Kelas, int Praktek, String atributStr){
         setId(Kelas);
-        setPraktek(Praktek);
+        if(Praktek == 1)
+            setPraktek(true);
+        else
+            setPraktek(false);
+        
+        String[] out = atributStr.split(",");
+        for (int i = 0; i < out.length; i++) {
+             atribut.add(Integer.parseInt(out[i]));
+        }
     }
     
-//    public RuangKelas(int Kelas, int Praktek, int jam, int day){
-//        setId(Kelas);
-//        setPraktek(Praktek);
-//        setJamMulai(jam);
-//        setDay(day);
-//    }
-    
-    
-
     /**
      * @return the id
      */
