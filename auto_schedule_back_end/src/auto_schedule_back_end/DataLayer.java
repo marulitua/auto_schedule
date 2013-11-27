@@ -67,21 +67,23 @@ public class DataLayer {
             Statement ps = con.createStatement();
             ResultSet rs = ps.executeQuery
             (
-                "select r.id, r.praktek, (select GROUP_CONCAT(t.atribut_id) "
+                "select r.id, r.lantai, r.praktek, (select GROUP_CONCAT(t.atribut_id) "
               + "from trx_ruang_atribut t "
               + "where t.ruang_kelas_id = r.id ) as atribut from ruang_kelas r"
             );
             
             int id;
+            int lantai;
             int praktek;
             String atribut;
             RuangKelas ruang;
             while (rs.next()) {
                 id = rs.getInt(1);
-                praktek = rs.getInt(2);
-                atribut = rs.getString(3);
+                lantai = rs.getInt(2);
+                praktek = rs.getInt(3);
+                atribut = rs.getString(4);
 
-                ruang = new RuangKelas(id, praktek, atribut);
+                ruang = new RuangKelas(id, lantai, praktek, atribut);
                
                 listRuang.add(ruang);
             }

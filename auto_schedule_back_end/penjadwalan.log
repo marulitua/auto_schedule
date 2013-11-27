@@ -869,3 +869,78 @@
 2013.15.27 04:15:40  listDosen size = 4
 2013.15.27 04:15:41  php sent : 0
 2013.15.27 04:15:41  java sent : false
+2013.00.27 05:00:02  java server stared
+2013.00.27 05:00:12  php sent : 0
+2013.00.27 05:00:12  java sent : false
+2013.00.27 05:00:12  php sent : 1
+2013.00.27 05:00:12  java sent : true
+2013.00.27 05:00:12  query listRuang
+2013.00.27 05:00:12  listRuang size = 187
+2013.00.27 05:00:12  query listKurikulum
+2013.00.27 05:00:12  listKurikulum size = 34
+2013.00.27 05:00:12  query listDosen
+2013.00.27 05:00:12  listDosen size = 4
+2013.00.27 05:00:14  php sent : 0
+2013.00.27 05:00:14  java sent : false
+2013.04.27 05:04:37  java server stared
+2013.04.27 05:04:45  php sent : 0
+2013.04.27 05:04:45  java sent : false
+2013.04.27 05:04:45  php sent : 1
+2013.04.27 05:04:45  java sent : true
+2013.04.27 05:04:45  query listRuang
+2013.04.27 05:04:45  listRuang size = 187
+2013.04.27 05:04:45  query listKurikulum
+2013.04.27 05:04:45  listKurikulum size = 34
+2013.04.27 05:04:45  query listDosen
+2013.04.27 05:04:45  listDosen size = 4
+2013.04.27 05:04:45  Sort berdasarkan optionValue
+2013.04.27 05:04:45  susun domain
+2013.04.27 05:04:45  listDomain size = 687
+2013.04.27 05:04:46  php sent : 0
+2013.04.27 05:04:46  java sent : false
+2013.06.27 05:06:18  php sent : 0
+2013.06.27 05:06:18  java sent : false
+2013.06.27 05:06:18  php sent : 1
+2013.06.27 05:06:18  java sent : true
+2013.06.27 05:06:18  query listRuang
+2013.06.27 05:06:18  listRuang size = 187
+2013.06.27 05:06:18  query listKurikulum
+2013.06.27 05:06:18  listKurikulum size = 34
+2013.06.27 05:06:18  query listDosen
+2013.06.27 05:06:18  listDosen size = 4
+2013.06.27 05:06:18  Sort berdasarkan optionValue
+2013.06.27 05:06:18  susun domain
+2013.06.27 05:06:18  listDomain size = 748
+2013.06.27 05:06:20  php sent : 0
+2013.06.27 05:06:20  java sent : false
+2013.08.27 05:08:50  java server stared
+2013.08.27 05:08:59  php sent : 0
+2013.08.27 05:08:59  java sent : false
+2013.08.27 05:08:59  php sent : 1
+2013.08.27 05:08:59  java sent : true
+2013.08.27 05:08:59  query listRuang
+2013.08.27 05:08:59  listRuang size = 187
+2013.08.27 05:08:59  query listKurikulum
+2013.08.27 05:08:59  listKurikulum size = 34
+2013.08.27 05:08:59  query listDosen
+2013.08.27 05:08:59  listDosen size = 4
+2013.08.27 05:08:59  Sort berdasarkan optionValue
+2013.08.27 05:08:59  susun domain
+2013.08.27 05:08:59  listDomain size = 748
+2013.09.27 05:09:00  php sent : 0
+2013.09.27 05:09:00  java sent : false
+2013.12.27 05:12:47  php sent : 0
+2013.12.27 05:12:47  java sent : false
+2013.12.27 05:12:47  php sent : 1
+2013.12.27 05:12:47  java sent : true
+2013.12.27 05:12:47  query listRuang
+2013.12.27 05:12:47  listRuang size = 187
+2013.12.27 05:12:47  query listKurikulum
+2013.12.27 05:12:47  listKurikulum size = 34
+2013.12.27 05:12:47  query listDosen
+2013.12.27 05:12:47  listDosen size = 4
+2013.12.27 05:12:47  Sort berdasarkan optionValue
+2013.12.27 05:12:47  susun domain
+2013.12.27 05:12:47  listDomain size = 748
+2013.12.27 05:12:48  php sent : 0
+2013.12.27 05:12:48  java sent : false
