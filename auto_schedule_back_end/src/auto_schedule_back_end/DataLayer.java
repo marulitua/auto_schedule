@@ -188,8 +188,11 @@ public class DataLayer {
                 ruang = rs.getString(6);
                 atribut = rs.getString(7);
 
-                kurikulum = new Kurikulum(id, mata_kuliah_id, jumlah_kelas, praktek, hari, ruang, atribut);
-                listKurikulum.add(kurikulum);
+                for(int i = 0;i<jumlah_kelas;i++){
+                    kurikulum = new Kurikulum(mata_kuliah_id, praktek, hari, ruang, atribut);
+                    listKurikulum.add(kurikulum);
+                }
+                
             }
         } catch (SQLException ex) {
             Logger.getLogger(DataLayer.class.getName()).log(Level.SEVERE, null, ex);

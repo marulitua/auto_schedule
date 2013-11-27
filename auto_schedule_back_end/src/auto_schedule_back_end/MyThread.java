@@ -6,7 +6,13 @@
 
 package auto_schedule_back_end;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author maruli
@@ -34,23 +40,40 @@ public class MyThread extends Thread {
 
     @Override
     public void run() {
+        try {
+            //get data
+            
+            dao.getRuang();
+            listRuang = dao.listRuang;
+            MsgLog.write("query listRuang");
+            MsgLog.write("listRuang size = "+listRuang.size());
+            
+            dao.getKurikulum();
+            listKurikulum = dao.listKurikulum;
+            MsgLog.write("query listKurikulum");
+            MsgLog.write("listKurikulum size = "+listKurikulum.size());
+            
+            dao.getDosen();
+            listDosen = dao.listDosen;
+            MsgLog.write("query listDosen");
+            MsgLog.write("listDosen size = "+listDosen.size());
+            
+            // sort berdasarkan optionValue
+            Collections.sort(listKurikulum, new CustomComparator());
+            
+            
+        } catch (IOException ex) {
+            Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    // lakukan penyusunan listKurikulum
+    // constraint dengan value option paling sedikit paling atas
+    // agar proses backtracking lebih efisien
+    
+    public void sortKurikulum(){
         
-        
-        //get data
-        
-        dao.getRuang();
-        listRuang = dao.listRuang;
-        
-        System.out.println("ruang size = "+listRuang.size());
-        
-        dao.getKurikulum();
-        listKurikulum = dao.listKurikulum;
-        
-        System.out.println("kurikulum size = "+listKurikulum.size());
-        
-        dao.getDosen();
-        listDosen = dao.listDosen;
-        
-        System.out.println("dosen size = "+listDosen.size());
     }
 }
+
+
