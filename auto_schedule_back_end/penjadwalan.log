@@ -944,3 +944,19 @@
 2013.12.27 05:12:47  listDomain size = 748
 2013.12.27 05:12:48  php sent : 0
 2013.12.27 05:12:48  java sent : false
+2013.09.27 07:09:26  java server stared
+2013.09.27 07:09:36  php sent : 0
+2013.09.27 07:09:36  java sent : false
+2013.09.27 07:09:36  php sent : 1
+2013.09.27 07:09:36  java sent : true
+2013.09.27 07:09:36  query listRuang
+2013.09.27 07:09:36  listRuang size = 187
+2013.09.27 07:09:36  query listKurikulum
+2013.09.27 07:09:36  listKurikulum size = 34
+2013.09.27 07:09:36  query listDosen
+2013.09.27 07:09:36  listDosen size = 4
+2013.09.27 07:09:36  Sort berdasarkan optionValue
+2013.09.27 07:09:36  susun domain
+2013.09.27 07:09:36  listDomain size = 748
+2013.09.27 07:09:38  php sent : 0
+2013.09.27 07:09:38  java sent : false

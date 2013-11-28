@@ -49,19 +49,6 @@ public class DataLayer {
 
     }
 
-    public void getActivePeriode() {
-        try {
-            Statement ps = con.createStatement();
-            ResultSet rs = ps.executeQuery("select p.id from periode p where p.finished_time is null");
-            int columnCount = rs.getMetaData().getColumnCount();
-            while (rs.next()) {
-                periode = rs.getInt(1);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(DataLayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
     public void getRuang() {
         try {
             Statement ps = con.createStatement();
@@ -242,4 +229,21 @@ public class DataLayer {
 //            }
 //        }
 //    }
+
+    public int getActivePeriode() {
+        
+        int result = 0;
+        
+        try {
+            Statement ps = con.createStatement();
+            ResultSet rs = ps.executeQuery("select p.id from periode p where p.finished_time is null ");
+            while (rs.next()) {
+                result = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DataLayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return result;
+    }
 }

@@ -7,9 +7,7 @@ package auto_schedule_back_end;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,14 +21,23 @@ public class MyThread extends Thread {
     int maxTime = 18;
     long startTime;
     int anchor = 0;
-
+    
+    // flag menandakan index listKurikulum yang paling terakhir dicoba
+    int flag = -1;
+    
     ArrayList<RuangKelas> listRuang = new ArrayList<>();
     ArrayList<Kurikulum> listKurikulum = new ArrayList<>();
     ArrayList<Dosen> listDosen = new ArrayList<>();
     ArrayList<Domain> listDomain = new ArrayList<>();
+    
+    ArrayList<Jadwal> listSolved = new ArrayList<>();
+    ArrayList<Kurikulum> listUnSolved = new ArrayList<>();
+    
+    ArrayList<Jadwal> listJadwal = new ArrayList<>();
 
     DataLayer dao = new DataLayer();
-
+    int periode = dao.getActivePeriode();
+    
     public MyThread() {
 
     }
@@ -68,6 +75,22 @@ public class MyThread extends Thread {
             MsgLog.write("susun domain");
             MsgLog.write("listDomain size = "+listDomain.size());
             
+            //do backtracking
+//            do{
+//                // jika ada constraint yang tidak memiliki solusi 
+//                // eliminasi constraint tersebut
+//                if(flag != -1){
+//                    // masukkan ke unsolved
+//                    listUnSolved.add(listKurikulum.get(flag));
+//                    listKurikulum.remove(flag);
+//                    
+//                    //reset flag
+//                    flag = -1;
+//                }
+//            }while(!cspBt());
+            
+            
+            
         } catch (IOException ex) {
             Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,5 +111,43 @@ public class MyThread extends Thread {
                 listDomain.add(variabel);
             }
         }
+    }
+
+    private boolean cspBt() {
+        return doBacktracking(0);
+    }
+
+    private boolean doBacktracking(int x) {
+        Jadwal result;
+        boolean successful;
+        
+        if(listSolved.size() + listUnSolved.size() == listKurikulum.size())
+            return true;
+        else{
+            flag++;
+            
+            for(int i = 0; i < listDomain.size(); i++){
+                result = compare(x, i);
+                if( result != null){
+                    
+                    listSolved.add(result);
+                    successful = doBacktracking(x + 1);
+
+                    if (!successful) {
+                        // remove the lastest solved
+                        listSolved.remove(listSolved.size() - 1);
+                        i++;
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        return false;
+    }
+
+    private Jadwal compare(int x, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
