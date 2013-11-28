@@ -15,29 +15,24 @@ import java.util.ArrayList;
 public class Dosen {
     private int id;
     private int batas;
+    private int hari;
+    private int mulai;
+    private int selesai;
     
     ArrayList<Integer> listMatakuliah = new ArrayList<Integer>();
-    ArrayList<Waktu> listWaktu = new ArrayList<Waktu>();
 
-    public Dosen(int Id, int Batas, String Matakuliah, String Waktu) {
+    public Dosen(int Id, int Batas, String Matakuliah, int Hari, int Mulai, int Selesai) {
         setId(Id);
         setBatas(Batas);
+        setHari(Hari);
+        setMulai(Mulai);
+        setSelesai(Selesai);
         
         if(Matakuliah != null){
             String[] out = Matakuliah.split(",");
             for (int i = 0; i < out.length; i++) {
                 listMatakuliah.add(Integer.parseInt(out[i]));
             }           
-        }
-        
-        if(Waktu != null){
-            String[] out = Waktu.split(",");
-            for (int i = 0; i < out.length; i++) {
-                String[] peer = out[i].split("-");
-                
-                Waktu waktuDosen = new Waktu(Integer.parseInt(peer[0]),Integer.parseInt(peer[1]),Integer.parseInt(peer[2]));
-                listWaktu.add(waktuDosen);
-            }
         }
     }
     
@@ -67,6 +62,48 @@ public class Dosen {
      */
     public void setBatas(int batas) {
         this.batas = batas;
+    }
+
+    /**
+     * @return the hari
+     */
+    public int getHari() {
+        return hari;
+    }
+
+    /**
+     * @param hari the hari to set
+     */
+    public void setHari(int hari) {
+        this.hari = hari;
+    }
+
+    /**
+     * @return the mulai
+     */
+    public int getMulai() {
+        return mulai;
+    }
+
+    /**
+     * @param mulai the mulai to set
+     */
+    public void setMulai(int mulai) {
+        this.mulai = mulai;
+    }
+
+    /**
+     * @return the selesai
+     */
+    public int getSelesai() {
+        return selesai;
+    }
+
+    /**
+     * @param selesai the selesai to set
+     */
+    public void setSelesai(int selesai) {
+        this.selesai = selesai;
     }
     
 }

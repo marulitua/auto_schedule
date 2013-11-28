@@ -86,6 +86,8 @@ public class MyThread extends Thread {
 //                    
 //                    //reset flag
 //                    flag = -1;
+//                    
+//                    MsgLog.write("found unsolved");
 //                }
 //            }while(!cspBt());
             
@@ -147,7 +149,13 @@ public class MyThread extends Thread {
         return false;
     }
 
-    private Jadwal compare(int x, int i) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private Jadwal compare(int kurikulum, int domain) {
+        
+        Jadwal result = null;
+        
+        
+        
+        return result;
+        
     }
 }

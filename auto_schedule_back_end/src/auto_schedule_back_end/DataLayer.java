@@ -117,10 +117,16 @@ public class DataLayer {
                 lantai = rs.getInt(2);
                 mataKuliah = rs.getString(3);
                 waktu = rs.getString(4);
+         
+                
+                String[] out = waktu.split(",");
+                for (int i = 0; i < out.length; i++) {
+                     String[] peer = out[i].split("-");
 
-                dosen = new Dosen(id, lantai, mataKuliah, waktu);
+                     dosen = new Dosen(id, lantai, mataKuliah, Integer.parseInt(peer[0]), Integer.parseInt(peer[1]), Integer.parseInt(peer[2]));
                
-                listDosen.add(dosen);
+                     listDosen.add(dosen);
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(DataLayer.class.getName()).log(Level.SEVERE, null, ex);
