@@ -54,7 +54,7 @@ public class Auto_schedule_back_end {
                     long startTime = System.nanoTime();
 
                     //write log
-                    MsgLog.write("php sent : " + line);
+//                    MsgLog.write("php sent : " + line);
                     String msg = "";
                     if ("0".equals(line)) {
                         //check doang
@@ -76,7 +76,7 @@ public class Auto_schedule_back_end {
                         }
                     }
                     bw.flush();
-                    MsgLog.write("java sent : " + msg);
+//                    MsgLog.write("java sent : " + msg);
                 }
 
                 //Closing streams and the current socket (not the listening socket!)

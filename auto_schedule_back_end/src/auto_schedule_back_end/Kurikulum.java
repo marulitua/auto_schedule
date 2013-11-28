@@ -118,10 +118,10 @@ public class Kurikulum implements Comparable<Kurikulum> {
     }
 
     boolean isValidRoom(int id) {
-        if(listRuang.size() == 0)
+        if(getListRuang().size() == 0)
             return true;
         
-        return listRuang.contains(id);
+        return getListRuang().contains(id);
     }
 
     boolean isValidAtribut(ArrayList<Integer> atribut) {
@@ -155,6 +155,20 @@ public class Kurikulum implements Comparable<Kurikulum> {
      */
     public void setSks(int sks) {
         this.sks = sks;
+    }
+
+    /**
+     * @return the listRuang
+     */
+    public ArrayList<Integer> getListRuang() {
+        return listRuang;
+    }
+
+    /**
+     * @param listRuang the listRuang to set
+     */
+    public void setListRuang(ArrayList<Integer> listRuang) {
+        this.listRuang = listRuang;
     }
     
     

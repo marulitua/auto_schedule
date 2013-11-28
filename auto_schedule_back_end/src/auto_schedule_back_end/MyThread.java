@@ -79,23 +79,29 @@ public class MyThread extends Thread {
             do{
                 // jika ada constraint yang tidak memiliki solusi 
                 // eliminasi constraint tersebut
-                if(flag != -1){
+                cspBt();
+                if(flag != 0 && flag < listKurikulum.size()){
                     // masukkan ke unsolved
                     listUnSolved.add(listKurikulum.get(flag));
                     listKurikulum.remove(flag);
+                    
+                    MsgLog.write("listKurikulum.size() = "+listKurikulum.size());
                     
                     //reset flag
                     flag = -1;
                     
                     MsgLog.write("found unsolved");
+                }else{
+                    anchor = 0;
                 }
-            }while(!cspBt());
+                
+            }while(flag != 0);
             
             MsgLog.write("listKurikulum.size() = "+listKurikulum.size());
             MsgLog.write("listSolved.size() = "+listSolved.size()); 
             MsgLog.write("listUnSolved.size() = "+listUnSolved.size()); 
             
-            MsgLog.write("execution time = "+(double)(System.nanoTime() - startTime) / 1000000000);
+            MsgLog.write("execution time = "+(double)(System.nanoTime() - startTime) / 1000000000 + " s");
             
         } catch (IOException ex) {
             Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
@@ -119,32 +125,33 @@ public class MyThread extends Thread {
         }
     }
 
-    private boolean cspBt() {
+    private boolean cspBt() throws IOException {
         return doBacktracking(0);
     }
 
-    private boolean doBacktracking(int x) {
+    private boolean doBacktracking(int x) throws IOException {
+        MsgLog.write("constraint = "+x);
+        
         Jadwal result;
         boolean successful;
-        
+        if(x > flag)
+            flag = x;
+            
         if(x == listKurikulum.size())
             return true;
         else{
-            flag++;
-            
             for(int i = 0; i < listDomain.size(); i++){
                 result = compare(x, i);
                 if( result != null){
                     
                     listSolved.add(result);
                     successful = doBacktracking(x + 1);
-
+                    
                     if (!successful) {
                         // remove the lastest solved
                         listSolved.remove(listSolved.size() - 1);
                         i++;
-                    }
-                    
+                    }              
                 }
             }
         }
@@ -154,11 +161,13 @@ public class MyThread extends Thread {
 
     private Jadwal compare(int kurikulum, int domain) {
         try {
+            
             Jadwal result = null;
             
             Kurikulum constraint = listKurikulum.get(kurikulum);
             
             Dosen varDosen = listDosen.get(listDomain.get(domain).getIdDosen());
+            
             RuangKelas varRuang = listRuang.get(listDomain.get(domain).getIdRuang());
             
             // cek matakuliah
@@ -177,20 +186,73 @@ public class MyThread extends Thread {
                 return null;
             
             //compare attribut
-            if(constraint.getListAtribut().size() == 0)
+            if(constraint.getListAtribut().size() != 0 && constraint.getListRuang().size() == 0)
                 if(!constraint.isValidAtribut(varRuang.getAtribut()))
                     return null;
             
-            // sks > selesai - mulai
+            //sks > selesai - mulai
             if(constraint.getSks() > (varDosen.getSelesai() - varDosen.getMulai()))
                 return null;
             
-            MsgLog.write("do compare");
+            // dari depan
+            
+            for(int i = varDosen.getMulai(); i <= varDosen.getSelesai(); i++){
+                if( i + constraint.getSks() > varDosen.getSelesai())
+                    break;
+                else{
+                    if(isAvailable(varDosen.getId(), varRuang.getId(), i, i + constraint.getSks()))
+                        return new Jadwal(periode, constraint.getMata_kuliah_id(), varDosen.getId(), varRuang.getId(), i, i + constraint.getSks());
+                }
+            }
+            
+            //dari belakang
+            for(int i = varDosen.getSelesai(); i >= varDosen.getMulai(); i--){
+                if( i - constraint.getSks() < varDosen.getMulai())
+                    break;
+                else{
+                    if(isAvailable(varDosen.getId(), varRuang.getId(), i, i - constraint.getSks()))
+                        return new Jadwal(periode, constraint.getMata_kuliah_id(), varDosen.getId(), varRuang.getId(), i, i - constraint.getSks());
+                }
+            }
+            
             return result;
         } catch (IOException ex) {
             Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
         
+        
+        return null;
+    }
+    
+    public boolean isAvailable(int dosen, int ruang, int mulai, int selesai) throws IOException{
+        
+        Jadwal param;        
+        // cek apakah waktu dosen masih tersedia pada waktu tersebut
+        for(int i = 0; i<listSolved.size(); i++ ){
+            param = listSolved.get(i);
+            if(param.getDosen() == dosen && param.getMulai() <= mulai && param.getSelesai() >= selesai)
+                return false;
+            
+            if(param.getDosen() == dosen && param.getMulai() < selesai)
+                return false;
+            
+            if(param.getDosen() == dosen && param.getSelesai() < mulai)
+                return false;
+        }
+        
+        // cek apakah ruang masih tersedia pada waktu tersebut
+        for(int i = 0; i<listSolved.size(); i++ ){
+            param = listSolved.get(i);
+            if(param.getRuang_kelas() == ruang && param.getMulai() <= mulai && param.getSelesai() >= selesai)
+                return false;
+            
+            if(param.getRuang_kelas() == ruang && param.getMulai() < selesai)
+                return false;
+            
+            if(param.getRuang_kelas() == ruang && param.getSelesai() < mulai)
+                return false;
+        }
+        
+        return true;
     }
 }
