@@ -76,22 +76,26 @@ public class MyThread extends Thread {
             MsgLog.write("listDomain size = "+listDomain.size());
             
             //do backtracking
-//            do{
-//                // jika ada constraint yang tidak memiliki solusi 
-//                // eliminasi constraint tersebut
-//                if(flag != -1){
-//                    // masukkan ke unsolved
-//                    listUnSolved.add(listKurikulum.get(flag));
-//                    listKurikulum.remove(flag);
-//                    
-//                    //reset flag
-//                    flag = -1;
-//                    
-//                    MsgLog.write("found unsolved");
-//                }
-//            }while(!cspBt());
+            do{
+                // jika ada constraint yang tidak memiliki solusi 
+                // eliminasi constraint tersebut
+                if(flag != -1){
+                    // masukkan ke unsolved
+                    listUnSolved.add(listKurikulum.get(flag));
+                    listKurikulum.remove(flag);
+                    
+                    //reset flag
+                    flag = -1;
+                    
+                    MsgLog.write("found unsolved");
+                }
+            }while(!cspBt());
             
+            MsgLog.write("listKurikulum.size() = "+listKurikulum.size());
+            MsgLog.write("listSolved.size() = "+listSolved.size()); 
+            MsgLog.write("listUnSolved.size() = "+listUnSolved.size()); 
             
+            MsgLog.write("execution time = "+(double)(System.nanoTime() - startTime) / 1000000000);
             
         } catch (IOException ex) {
             Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
@@ -123,7 +127,7 @@ public class MyThread extends Thread {
         Jadwal result;
         boolean successful;
         
-        if(listSolved.size() + listUnSolved.size() == listKurikulum.size())
+        if(x == listKurikulum.size())
             return true;
         else{
             flag++;
@@ -143,7 +147,6 @@ public class MyThread extends Thread {
                     
                 }
             }
-            
         }
         
         return false;

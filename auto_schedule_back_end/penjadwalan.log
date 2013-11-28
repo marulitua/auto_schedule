@@ -995,3 +995,194 @@
 2013.04.27 08:04:58  listDomain size = 1122
 2013.04.27 08:04:59  php sent : 0
 2013.04.27 08:04:59  java sent : false
+2013.18.27 08:18:20  java server stared
+2013.18.27 08:18:25  php sent : 0
+2013.18.27 08:18:25  java sent : false
+2013.18.27 08:18:25  php sent : 1
+2013.18.27 08:18:25  java sent : true
+2013.18.27 08:18:25  query listRuang
+2013.18.27 08:18:25  listRuang size = 187
+2013.18.27 08:18:25  query listKurikulum
+2013.18.27 08:18:25  listKurikulum size = 34
+2013.18.27 08:18:25  query listDosen
+2013.18.27 08:18:25  listDosen size = 6
+2013.18.27 08:18:25  Sort berdasarkan optionValue
+2013.18.27 08:18:25  susun domain
+2013.18.27 08:18:25  listDomain size = 1122
+2013.18.27 08:18:26  php sent : 0
+2013.18.27 08:18:26  java sent : false
+2013.22.27 08:22:02  java server stared
+2013.22.27 08:22:08  php sent : 0
+2013.22.27 08:22:08  java sent : false
+2013.22.27 08:22:08  php sent : 1
+2013.22.27 08:22:08  java sent : true
+2013.22.27 08:22:08  query listRuang
+2013.22.27 08:22:08  listRuang size = 187
+2013.22.27 08:22:08  query listKurikulum
+2013.22.27 08:22:08  listKurikulum size = 34
+2013.22.27 08:22:08  query listDosen
+2013.22.27 08:22:08  listDosen size = 6
+2013.22.27 08:22:08  Sort berdasarkan optionValue
+2013.22.27 08:22:08  susun domain
+2013.22.27 08:22:08  listDomain size = 1122
+2013.22.27 08:22:09  php sent : 0
+2013.22.27 08:22:09  java sent : false
+2013.24.27 08:24:59  java server stared
+2013.25.27 08:25:05  php sent : 0
+2013.25.27 08:25:05  java sent : false
+2013.25.27 08:25:05  php sent : 1
+2013.25.27 08:25:05  java sent : true
+2013.25.27 08:25:05  query listRuang
+2013.25.27 08:25:05  listRuang size = 187
+2013.25.27 08:25:05  query listKurikulum
+2013.25.27 08:25:05  listKurikulum size = 34
+2013.25.27 08:25:05  query listDosen
+2013.25.27 08:25:05  listDosen size = 6
+2013.25.27 08:25:05  Sort berdasarkan optionValue
+2013.25.27 08:25:05  susun domain
+2013.25.27 08:25:05  listDomain size = 1122
+2013.25.27 08:25:05  execution time = 0
+2013.25.27 08:25:07  php sent : 0
+2013.25.27 08:25:07  java sent : false
+2013.26.27 08:26:28  java server stared
+2013.26.27 08:26:35  php sent : 0
+2013.26.27 08:26:35  java sent : false
+2013.26.27 08:26:35  php sent : 1
+2013.26.27 08:26:35  java sent : true
+2013.26.27 08:26:35  query listRuang
+2013.26.27 08:26:35  listRuang size = 187
+2013.26.27 08:26:35  query listKurikulum
+2013.26.27 08:26:35  listKurikulum size = 34
+2013.26.27 08:26:35  query listDosen
+2013.26.27 08:26:35  listDosen size = 6
+2013.26.27 08:26:35  Sort berdasarkan optionValue
+2013.26.27 08:26:35  susun domain
+2013.26.27 08:26:35  listDomain size = 1122
+2013.26.27 08:26:35  execution time = 0.066467013
+2013.26.27 08:26:37  php sent : 0
+2013.26.27 08:26:37  java sent : false
+2013.26.27 08:26:52  java server stared
+2013.26.27 08:26:57  php sent : 0
+2013.26.27 08:26:57  java sent : false
+2013.26.27 08:26:57  php sent : 1
+2013.26.27 08:26:57  java sent : true
+2013.26.27 08:26:57  query listRuang
+2013.26.27 08:26:57  listRuang size = 187
+2013.26.27 08:26:57  query listKurikulum
+2013.26.27 08:26:57  listKurikulum size = 34
+2013.26.27 08:26:57  query listDosen
+2013.26.27 08:26:57  listDosen size = 6
+2013.26.27 08:26:57  Sort berdasarkan optionValue
+2013.26.27 08:26:57  susun domain
+2013.26.27 08:26:57  listDomain size = 1122
+2013.26.27 08:26:57  found unsolved
+2013.26.27 08:26:57  found unsolved
+2013.26.27 08:26:57  found unsolved
+2013.26.27 08:26:57  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  found unsolved
+2013.26.27 08:26:58  execution time = 0.131752766
+2013.26.27 08:26:59  php sent : 0
+2013.26.27 08:26:59  java sent : false
+2013.32.27 08:32:51  java server stared
+2013.32.27 08:32:58  php sent : 0
+2013.32.27 08:32:58  java sent : false
+2013.32.27 08:32:58  php sent : 1
+2013.32.27 08:32:58  java sent : true
+2013.32.27 08:32:58  query listRuang
+2013.32.27 08:32:58  listRuang size = 187
+2013.32.27 08:32:58  query listKurikulum
+2013.32.27 08:32:58  listKurikulum size = 34
+2013.32.27 08:32:58  query listDosen
+2013.32.27 08:32:58  listDosen size = 6
+2013.32.27 08:32:58  Sort berdasarkan optionValue
+2013.32.27 08:32:58  susun domain
+2013.32.27 08:32:58  listDomain size = 1122
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  found unsolved
+2013.32.27 08:32:58  listKurikulum.size() = 17
+2013.32.27 08:32:58  listSolved.size() = 0
+2013.32.27 08:32:58  listUnSolved.size() = 17
+2013.32.27 08:32:58  execution time = 0.084558648
+2013.32.27 08:32:59  php sent : 0
+2013.32.27 08:32:59  java sent : false
+2013.36.27 08:36:09  java server stared
+2013.36.27 08:36:13  php sent : 0
+2013.36.27 08:36:13  java sent : false
+2013.36.27 08:36:13  php sent : 1
+2013.36.27 08:36:14  java sent : true
+2013.36.27 08:36:14  query listRuang
+2013.36.27 08:36:14  listRuang size = 187
+2013.36.27 08:36:14  query listKurikulum
+2013.36.27 08:36:14  listKurikulum size = 34
+2013.36.27 08:36:14  query listDosen
+2013.36.27 08:36:14  listDosen size = 6
+2013.36.27 08:36:14  Sort berdasarkan optionValue
+2013.36.27 08:36:14  susun domain
+2013.36.27 08:36:14  listDomain size = 1122
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  found unsolved
+2013.36.27 08:36:14  listKurikulum.size() = 0
+2013.36.27 08:36:14  listSolved.size() = 0
+2013.36.27 08:36:14  listUnSolved.size() = 34
+2013.36.27 08:36:14  execution time = 0.091067651
+2013.36.27 08:36:15  php sent : 0
+2013.36.27 08:36:15  java sent : false
