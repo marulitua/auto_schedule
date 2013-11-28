@@ -138,7 +138,7 @@ public class DataLayer {
             Statement ps = con.createStatement();
             ResultSet rs = ps.executeQuery
             (
-                "select t.id, t.mata_kuliah_id, \n" +
+                "select t.id, t.mata_kuliah_id, m.sks, \n" +
             "		 t.jumlah_kelas,\n" +
             "		 m.praktek,\n" +
             "		 (\n" +
@@ -169,6 +169,7 @@ public class DataLayer {
             int mata_kuliah_id;
             int jumlah_kelas;
             int praktek;
+            int sks;
             String hari;
             String ruang;
             String atribut;
@@ -177,14 +178,15 @@ public class DataLayer {
             while (rs.next()) {
                 id = rs.getInt(1);
                 mata_kuliah_id = rs.getInt(2);
-                jumlah_kelas = rs.getInt(3);
-                praktek = rs.getInt(4);
-                hari = rs.getString(5);
-                ruang = rs.getString(6);
-                atribut = rs.getString(7);
+                sks = rs.getInt(3);
+                jumlah_kelas = rs.getInt(4);
+                praktek = rs.getInt(5);
+                hari = rs.getString(6);
+                ruang = rs.getString(7);
+                atribut = rs.getString(8);
 
                 for(int i = 0;i<jumlah_kelas;i++){
-                    kurikulum = new Kurikulum(mata_kuliah_id, praktek, hari, ruang, atribut);
+                    kurikulum = new Kurikulum(mata_kuliah_id, praktek, sks, hari, ruang, atribut);
                     listKurikulum.add(kurikulum);
                 }
                 

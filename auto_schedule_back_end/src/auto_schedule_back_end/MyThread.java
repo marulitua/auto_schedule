@@ -153,37 +153,44 @@ public class MyThread extends Thread {
     }
 
     private Jadwal compare(int kurikulum, int domain) {
-        
-        Jadwal result = null;
-        
-        Kurikulum constraint = listKurikulum.get(kurikulum);
-        
-        Dosen varDosen = listDosen.get(listDomain.get(domain).getIdDosen());
-        RuangKelas varRuang = listRuang.get(listDomain.get(domain).getIdRuang());
-        
-        // cek matakuliah
-        if(!varDosen.isValidCourse(constraint.getMata_kuliah_id()))
-            return null;
-        
-        // cek hari
-        if(!constraint.isValidDay(varDosen.getHari()))
-            return null;
-        
-        //praktek
-        if(constraint.getPraktek() != varRuang.getPraktek())
-            return null;
-        
-        if(!constraint.isValidRoom(varRuang.getId()))
-            return null;
-        
-        //compare attribut
-        if(constraint.getListAtribut().size() == 0)
-            if(!constraint.isValidAtribut(varRuang.getAtribut()))
+        try {
+            Jadwal result = null;
+            
+            Kurikulum constraint = listKurikulum.get(kurikulum);
+            
+            Dosen varDosen = listDosen.get(listDomain.get(domain).getIdDosen());
+            RuangKelas varRuang = listRuang.get(listDomain.get(domain).getIdRuang());
+            
+            // cek matakuliah
+            if(!varDosen.isValidCourse(constraint.getMata_kuliah_id()))
                 return null;
-        
-        // waktu
-        
-        return result;
+            
+            // cek hari
+            if(!constraint.isValidDay(varDosen.getHari()))
+                return null;
+            
+            //praktek
+            if(constraint.getPraktek() != varRuang.getPraktek())
+                return null;
+            
+            if(!constraint.isValidRoom(varRuang.getId()))
+                return null;
+            
+            //compare attribut
+            if(constraint.getListAtribut().size() == 0)
+                if(!constraint.isValidAtribut(varRuang.getAtribut()))
+                    return null;
+            
+            // sks > selesai - mulai
+            if(constraint.getSks() > (varDosen.getSelesai() - varDosen.getMulai()))
+                return null;
+            
+            MsgLog.write("do compare");
+            return result;
+        } catch (IOException ex) {
+            Logger.getLogger(MyThread.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
         
     }
 }

@@ -16,15 +16,17 @@ public class Kurikulum implements Comparable<Kurikulum> {
     private int mata_kuliah_id;
     private int praktek;
     private int optionValue;
+    private int sks;
     
     private ArrayList<Integer> listHari = new ArrayList<Integer>();
     private ArrayList<Integer> listRuang = new ArrayList<Integer>();
     private ArrayList<Integer> listAtribut = new ArrayList<Integer>();
     
-    Kurikulum(int mataKuliah, int Praktek,String hari, String ruang, String atribut){
+    Kurikulum(int mataKuliah, int Praktek, int Sks, String hari, String ruang, String atribut){
         
         setMata_kuliah_id(mataKuliah);
         setPraktek(Praktek);
+        setSks(Sks);
         
         if(hari != null){
             String[] out = hari.split(",");
@@ -139,6 +141,20 @@ public class Kurikulum implements Comparable<Kurikulum> {
      */
     public ArrayList<Integer> getListAtribut() {
         return listAtribut;
+    }
+
+    /**
+     * @return the sks
+     */
+    public int getSks() {
+        return sks;
+    }
+
+    /**
+     * @param sks the sks to set
+     */
+    public void setSks(int sks) {
+        this.sks = sks;
     }
     
     
