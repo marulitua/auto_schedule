@@ -108,5 +108,38 @@ public class Kurikulum implements Comparable<Kurikulum> {
          return this.optionValue > o.optionValue ? 1 : this.optionValue < o.optionValue ? -1 : 0;
     }
     
+    public boolean isValidDay(int param){
+        if(listHari.size() == 0)
+            return true;
+        
+        return listHari.contains(param);
+    }
+
+    boolean isValidRoom(int id) {
+        if(listRuang.size() == 0)
+            return true;
+        
+        return listRuang.contains(id);
+    }
+
+    boolean isValidAtribut(ArrayList<Integer> atribut) {
+        if(getListAtribut().size() > atribut.size())
+            return false;
+        
+        for(int i = 0;i < getListAtribut().size();i++){
+            if(!atribut.contains(listAtribut.get(i)))
+                return false;
+        }
+        
+        return true;
+    }
+
+    /**
+     * @return the listAtribut
+     */
+    public ArrayList<Integer> getListAtribut() {
+        return listAtribut;
+    }
+    
     
 }

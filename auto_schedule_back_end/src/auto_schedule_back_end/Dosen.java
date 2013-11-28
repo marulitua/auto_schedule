@@ -106,4 +106,8 @@ public class Dosen {
         this.selesai = selesai;
     }
     
+    public boolean isValidCourse(int param){
+        return listMatakuliah.contains(param);
+    }
+    
 }

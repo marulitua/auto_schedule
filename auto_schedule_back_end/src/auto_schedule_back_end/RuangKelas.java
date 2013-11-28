@@ -13,18 +13,14 @@ import java.util.ArrayList;
  */
 public final class RuangKelas {
     private int id;
-    private boolean praktek;
+    private int praktek;
     private int lantai;
     private ArrayList<Integer> atribut = new ArrayList<Integer>();
     
     public RuangKelas(int Kelas, int Lantai,int Praktek, String atributStr){
         setId(Kelas);
         setLantai(Lantai);
-        if(Praktek == 1)
-            setPraktek(true);
-        else
-            setPraktek(false);
-        
+        setPraktek(Praktek);
     
         if(atributStr != null){
             String[] out = atributStr.split(",");
@@ -51,14 +47,14 @@ public final class RuangKelas {
     /**
      * @return the praktek
      */
-    public boolean getPraktek() {
+    public int getPraktek() {
         return praktek;
     }
 
     /**
      * @param praktek the praktek to set
      */
-    public void setPraktek(boolean praktek) {
+    public void setPraktek(int praktek) {
         this.praktek = praktek;
     }
 
@@ -74,5 +70,19 @@ public final class RuangKelas {
      */
     public void setLantai(int lantai) {
         this.lantai = lantai;
+    }
+
+    /**
+     * @return the atribut
+     */
+    public ArrayList<Integer> getAtribut() {
+        return atribut;
+    }
+
+    /**
+     * @param atribut the atribut to set
+     */
+    public void setAtribut(ArrayList<Integer> atribut) {
+        this.atribut = atribut;
     }
 }

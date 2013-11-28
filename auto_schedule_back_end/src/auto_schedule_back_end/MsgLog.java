@@ -25,7 +25,7 @@ class MsgLog {
     }
 
     public static void write(String f, String s) throws IOException {
-        TimeZone tz = TimeZone.getTimeZone("EST"); // or PST, MID, etc ...
+        TimeZone tz = TimeZone.getTimeZone("WIB"); // or PST, MID, etc ...
         Date now = new Date();
         DateFormat df = new SimpleDateFormat("yyyy.mm.dd hh:mm:ss ");
         df.setTimeZone(tz);

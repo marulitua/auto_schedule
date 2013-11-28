@@ -156,7 +156,32 @@ public class MyThread extends Thread {
         
         Jadwal result = null;
         
+        Kurikulum constraint = listKurikulum.get(kurikulum);
         
+        Dosen varDosen = listDosen.get(listDomain.get(domain).getIdDosen());
+        RuangKelas varRuang = listRuang.get(listDomain.get(domain).getIdRuang());
+        
+        // cek matakuliah
+        if(!varDosen.isValidCourse(constraint.getMata_kuliah_id()))
+            return null;
+        
+        // cek hari
+        if(!constraint.isValidDay(varDosen.getHari()))
+            return null;
+        
+        //praktek
+        if(constraint.getPraktek() != varRuang.getPraktek())
+            return null;
+        
+        if(!constraint.isValidRoom(varRuang.getId()))
+            return null;
+        
+        //compare attribut
+        if(constraint.getListAtribut().size() == 0)
+            if(!constraint.isValidAtribut(varRuang.getAtribut()))
+                return null;
+        
+        // waktu
         
         return result;
         
