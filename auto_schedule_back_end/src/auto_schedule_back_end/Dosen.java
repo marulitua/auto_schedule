@@ -109,5 +109,12 @@ public class Dosen {
     public boolean isValidCourse(int param){
         return listMatakuliah.contains(param);
     }
+
+    boolean isValidDay(ArrayList<Integer> listHari) {
+        if(listHari.size() == 0)
+            return true;
+        else
+            return listHari.contains(hari);
+    }
     
 }

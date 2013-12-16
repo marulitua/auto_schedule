@@ -32,10 +32,10 @@ $cs->registerScriptFile(Yii::app()->baseUrl. '/js/select2.min.js');
         'config'=> $config,)
     );  
 
-$this->breadcrumbs=array(
-	'Ruang Kelas'=>array('index'),
-	'Manage',
-);
+//$this->breadcrumbs=array(
+//	'Ruang Kelas'=>array('index'),
+//	'Manage',
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Ruang Kelas', 'url'=>array('index')),

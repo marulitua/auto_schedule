@@ -2,9 +2,9 @@
 /* @var $this RuangKelasController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Ruang Kelas',
-);
+//$this->breadcrumbs=array(
+//	'Ruang Kelas',
+//);
 
 $this->menu=array(
 	array('label'=>'Tambah Ruang Kelas', 'url'=>array('create')),

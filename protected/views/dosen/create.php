@@ -2,10 +2,10 @@
 /* @var $this DosenController */
 /* @var $model Dosen */
 
-$this->breadcrumbs=array(
-	'Dosen'=>array('index'),
-	'Tambah',
-);
+//$this->breadcrumbs=array(
+//	'Dosen'=>array('index'),
+//	'Tambah',
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Dosen', 'url'=>array('index')),

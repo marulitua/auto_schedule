@@ -2,10 +2,10 @@
 /* @var $this TrxKurikulumController */
 /* @var $model TrxKurikulum */
 
-$this->breadcrumbs=array(
-	'Kurikulum'=>array('index'),
-	$model->id,
-);
+//$this->breadcrumbs=array(
+//	'Kurikulum'=>array('index'),
+//	$model->id,
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Kurikulum', 'url'=>array('index')),

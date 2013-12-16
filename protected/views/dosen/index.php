@@ -2,9 +2,9 @@
 /* @var $this DosenController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Dosen',
-);
+//$this->breadcrumbs=array(
+//	'Dosen',
+//);
 
 $this->menu=array(
 	array('label'=>'Tambah Dosen', 'url'=>array('create')),

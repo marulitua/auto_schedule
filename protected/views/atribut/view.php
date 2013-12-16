@@ -2,10 +2,10 @@
 /* @var $this AtributController */
 /* @var $model Atribut */
 
-$this->breadcrumbs=array(
-	'Atribut'=>array('index'),
-	$model->id,
-);
+//$this->breadcrumbs=array(
+//	'Atribut'=>array('index'),
+//	$model->id,
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Atribut', 'url'=>array('index')),

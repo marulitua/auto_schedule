@@ -2,9 +2,9 @@
 /* @var $this TrxKurikulumController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Kurikulum',
-);
+//$this->breadcrumbs=array(
+//	'Kurikulum',
+//);
 
 $this->menu=array(
 	array('label'=>'Tambah Kurikulum', 'url'=>array('create')),

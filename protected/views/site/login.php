@@ -5,9 +5,9 @@
 
 $this->pageTitle = Yii::app()->name . ' - Login';
 
-$this->breadcrumbs = array(
-    'Login',
-);
+//$this->breadcrumbs = array(
+//    'Login',
+//);
 ?>
 
 <h1>Login</h1>

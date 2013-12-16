@@ -32,6 +32,7 @@ Version: 3.4.5 Timestamp: Mon Nov  4 08:22:42 PST 2013
     padding: 0 0 0 8px;
     overflow: hidden;
     position: relative;
+    width: 200px;
 
     border: 1px solid #aaa;
     white-space: nowrap;

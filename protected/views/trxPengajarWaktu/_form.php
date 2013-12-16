@@ -3,7 +3,17 @@
 /* @var $model TrxPengajarWaktu */
 /* @var $form CActiveForm */
 
+
+$cs = Yii::app()->clientScript;
+$cs->registerCssFile(Yii::app()->baseUrl. '/css/select2.css');
+$cs->registerScriptFile(Yii::app()->baseUrl. '/js/select2.min.js');
+
 Yii::app()->clientScript->registerScript('search', "
+ 
+
+//TrxPengajarWaktu_pengajar_id
+$('#TrxPengajarWaktu_pengajar_id').select2();
+
 
 $('#trx-pengajar-waktu-form').submit(function() {
     // DO STUFF

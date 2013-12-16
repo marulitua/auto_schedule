@@ -2,10 +2,10 @@
 /* @var $this TrxPengajarController */
 /* @var $model TrxPengajar */
 
-$this->breadcrumbs=array(
-	'Pengajar'=>array('index'),
-	'Manage',
-);
+//$this->breadcrumbs=array(
+//	'Pengajar'=>array('index'),
+//	'Manage',
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Pengajar', 'url'=>array('index')),

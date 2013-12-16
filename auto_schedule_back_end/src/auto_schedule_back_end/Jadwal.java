@@ -15,14 +15,16 @@ public class Jadwal {
     private int mata_kuliah;
     private int dosen;
     private int ruang_kelas;
+    private int hari;
     private int mulai;
     private int selesai;
 
-    public Jadwal(int Periode, int MataKuliah, int Dosen, int RuangKelas, int Mulai, int Selesai) {
+    public Jadwal(int Periode, int MataKuliah, int Dosen, int RuangKelas, int Hari, int Mulai, int Selesai) {
         setPeriode(Periode);
         setMata_kuliah(MataKuliah);
         setDosen(Dosen);
         setRuang_kelas(RuangKelas);
+        setHari(Hari);
         setMulai(Mulai);
         setSelesai(Selesai);
     }
@@ -109,6 +111,20 @@ public class Jadwal {
      */
     public void setSelesai(int selesai) {
         this.selesai = selesai;
+    }
+
+    /**
+     * @return the hari
+     */
+    public int getHari() {
+        return hari;
+    }
+
+    /**
+     * @param hari the hari to set
+     */
+    public void setHari(int hari) {
+        this.hari = hari;
     }
     
     

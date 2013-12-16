@@ -2,9 +2,9 @@
 /* @var $this TrxRuangAtributController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Trx Ruang Atributs',
-);
+//$this->breadcrumbs=array(
+//	'Trx Ruang Atributs',
+//);
 
 $this->menu=array(
 	array('label'=>'Create TrxRuangAtribut', 'url'=>array('create')),

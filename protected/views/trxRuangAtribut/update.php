@@ -2,11 +2,11 @@
 /* @var $this TrxRuangAtributController */
 /* @var $model TrxRuangAtribut */
 
-$this->breadcrumbs=array(
-	'Trx Ruang Atributs'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
+//$this->breadcrumbs=array(
+//	'Trx Ruang Atributs'=>array('index'),
+//	$model->id=>array('view','id'=>$model->id),
+//	'Update',
+//);
 
 $this->menu=array(
 	array('label'=>'List TrxRuangAtribut', 'url'=>array('index')),

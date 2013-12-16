@@ -2,11 +2,21 @@
 /* @var $this SiteController */
 
 $this->pageTitle=Yii::app()->name . ' - About';
-$this->breadcrumbs=array(
-	'About',
-);
+//$this->breadcrumbs=array(
+//	'About',
+//);
 ?>
-<h1>About</h1>
+<h1>Penjadwalan Otomatis</h1>
+<p>Aplikasi ini dibuat oleh</p>
+<code>Nama : Erwin Maruli Tua Pakpahan</code>
+<br>
+<code>NIM  : 09110110106</code>
+<br>
+<code>Daerah berbahaya, 1:54 AM 2 - 12 - 2013</code>
 
-<p>This is a "static" page. You may change the content of this page
-by updating the file <code><?php echo __FILE__; ?></code>.</p>
+
+<br>
+<br>
+<br>
+<br>
+(◕‿◕✿) Sarasvati

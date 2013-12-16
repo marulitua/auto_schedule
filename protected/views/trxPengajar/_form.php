@@ -9,6 +9,11 @@ $cs->registerScriptFile(Yii::app()->baseUrl. '/js/select2.min.js');
 
 Yii::app()->clientScript->registerScript('search', "
 
+
+
+//dosen
+$('#TrxPengajar_dosen_id').select2();
+
 //mata kuliah
 $('#TrxPengajar_mataKuliah').select2();
 $('#TrxPengajar_mataKuliah').select2('val', [".TrxPengajarMataKuliah::model()->preLoaded($model->id)."]);

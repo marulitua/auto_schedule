@@ -29,6 +29,15 @@
                       
             <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/font-awesome.min.css"/>
             
+            <style>
+                #periode{
+                    
+                    font-size: 15pt;
+                    left: 0px;
+                    top: 0px;
+                }
+            </style>
+            
             <?php
                 //$baseScriptUrl=Yii::app()->getAssetManager()->publish(Yii::getPathOfAlias('ext.bootstrap.assets'));
 //                Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl.'/js/select2.min.js',CClientScript::POS_END);  
@@ -102,7 +111,7 @@
                                 'label' => 'Help',
                                 'url' => 'javaScript:void(0);',
                                 'items' => array(      
-                                    array('label' => 'Penjadwalan Help',
+                                    array('label' => 'Help',
                                         'url' => Yii::app()->createUrl('site/help'),
                                     ),
                                     array('label' => 'About',
@@ -152,7 +161,7 @@
                     ?>
                 </p>
             </div>-->
-
+<font id="periode"><?php if(penjadwalan::activePeriode() != null) { $semester = penjadwalan::activePeriode()->semester_id == 1 ? 'Ganjil' : 'Genap'; echo 'Periode '; echo penjadwalan::activePeriode()->tahun_ajar.' semester '.$semester; } ?></font>;
             <?php
             echo $content;
             ?>

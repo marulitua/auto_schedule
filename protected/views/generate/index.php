@@ -1,10 +1,10 @@
 <?php
 /* @var $this GenerateController */
 
-$this->breadcrumbs=array(
-	'Generate',
-);
-?>
+//$this->breadcrumbs=array(
+//	'Generate',
+//);
+//?>
 
 <?php
 //

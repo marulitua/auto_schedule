@@ -2,10 +2,10 @@
 /* @var $this RuangKelasController */
 /* @var $model RuangKelas */
 
-$this->breadcrumbs=array(
-	'Ruang Kelas'=>array('index'),
-	$model->id,
-);
+//$this->breadcrumbs=array(
+//	'Ruang Kelas'=>array('index'),
+//	$model->id,
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Ruang Kelas', 'url'=>array('index')),

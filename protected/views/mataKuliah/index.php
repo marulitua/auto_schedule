@@ -2,9 +2,9 @@
 /* @var $this MataKuliahController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Mata Kuliah',
-);
+//$this->breadcrumbs=array(
+//	'Mata Kuliah',
+//);
 
 $this->menu=array(
 	array('label'=>'Tambah Mata Kuliah', 'url'=>array('create')),

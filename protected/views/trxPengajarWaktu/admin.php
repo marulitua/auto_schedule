@@ -2,10 +2,10 @@
 /* @var $this TrxPengajarWaktuController */
 /* @var $model TrxPengajarWaktu */
 
-$this->breadcrumbs=array(
-	'Waktu Pengajar'=>array('index'),
-	'Manage',
-);
+//$this->breadcrumbs=array(
+//	'Waktu Pengajar'=>array('index'),
+//	'Manage',
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Waktu Pengajar', 'url'=>array('index')),
@@ -28,12 +28,13 @@ $('.search-form form').submit(function(){
 
 <h1>Manage Waktu Pengajar</h1>
 
-<?php $this->widget('bootstrap.widgets.TbGridView', array(
+<?php $this->widget('ext.groupgridview.GroupGridView', array(
 	'id'=>'trx-pengajar-waktu-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
-        'type'=>'striped bordered condensed',
-        'template'=>"{items}{summary}{pager}",
+        'mergeColumns' => array('pengajar_id'), 
+        //'type'=>'striped bordered condensed',
+        //'template'=>"{items}{summary}{pager}",
 	'columns'=>array(
 		//'id',
                 array(

@@ -2,9 +2,9 @@
 /* @var $this TrxPengajarController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Pengajar',
-);
+//$this->breadcrumbs=array(
+//	'Pengajar',
+//);
 
 $this->menu=array(
 	array('label'=>'Tambah Pengajar', 'url'=>array('create')),

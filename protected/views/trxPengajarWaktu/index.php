@@ -2,9 +2,9 @@
 /* @var $this TrxPengajarWaktuController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Waktu Pengajar',
-);
+//$this->breadcrumbs=array(
+//	'Waktu Pengajar',
+//);
 
 $this->menu=array(
 	array('label'=>'Tambah Waktu Pengajar', 'url'=>array('create')),

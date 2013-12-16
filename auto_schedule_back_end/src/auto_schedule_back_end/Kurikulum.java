@@ -22,6 +22,8 @@ public class Kurikulum implements Comparable<Kurikulum> {
     private ArrayList<Integer> listRuang = new ArrayList<Integer>();
     private ArrayList<Integer> listAtribut = new ArrayList<Integer>();
     
+    private ArrayList<SolutionSpace> solutionSpace = new ArrayList<SolutionSpace>();
+     
     Kurikulum(int mataKuliah, int Praktek, int Sks, String hari, String ruang, String atribut){
         
         setMata_kuliah_id(mataKuliah);
@@ -109,12 +111,17 @@ public class Kurikulum implements Comparable<Kurikulum> {
     public int compareTo(Kurikulum o) {
          return this.optionValue > o.optionValue ? 1 : this.optionValue < o.optionValue ? -1 : 0;
     }
+
+//    @Override
+//    public int compareTo(Kurikulum o) {
+//         return this.solutionSpace.size() > o.solutionSpace.size() ? 1 : this.solutionSpace.size() < o.solutionSpace.size() ? -1 : 0;
+//    }
     
     public boolean isValidDay(int param){
-        if(listHari.size() == 0)
+        if(getListHari().size() == 0)
             return true;
         
-        return listHari.contains(param);
+        return getListHari().contains(param);
     }
 
     boolean isValidRoom(int id) {
@@ -125,12 +132,16 @@ public class Kurikulum implements Comparable<Kurikulum> {
     }
 
     boolean isValidAtribut(ArrayList<Integer> atribut) {
-        if(getListAtribut().size() > atribut.size())
-            return false;
+        if(this.getListAtribut().size() != 0 && this.getListRuang().size() == 0){
         
-        for(int i = 0;i < getListAtribut().size();i++){
-            if(!atribut.contains(listAtribut.get(i)))
+            if(getListAtribut().size() > atribut.size())
                 return false;
+
+            for(int i = 0;i < getListAtribut().size();i++){
+                if(!atribut.contains(listAtribut.get(i)))
+                    return false;
+            }
+            
         }
         
         return true;
@@ -169,6 +180,27 @@ public class Kurikulum implements Comparable<Kurikulum> {
      */
     public void setListRuang(ArrayList<Integer> listRuang) {
         this.listRuang = listRuang;
+    }
+
+    /**
+     * @return the listHari
+     */
+    public ArrayList<Integer> getListHari() {
+        return listHari;
+    }
+
+    /**
+     * @return the solutionSpace
+     */
+    public ArrayList<SolutionSpace> getSolutionSpace() {
+        return solutionSpace;
+    }
+
+    /**
+     * @param solutionSpace the solutionSpace to set
+     */
+    public void setSolutionSpace(ArrayList<SolutionSpace> solutionSpace) {
+        this.solutionSpace = solutionSpace;
     }
     
     

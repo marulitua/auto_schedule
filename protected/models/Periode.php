@@ -23,6 +23,8 @@ class Periode extends CActiveRecord
 	/**
 	 * @return string the associated database table name
 	 */
+        public $periodeName; 
+         
 	public function tableName()
 	{
 		return 'periode';
@@ -116,4 +118,11 @@ class Periode extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+        
+        public function getPeriodeName(){
+            $name = $this->tahun_ajar;
+            $name .= $this->semester_id == 1 ? " Ganjil" : " Genap";
+            
+            return $name;
+        }
 }

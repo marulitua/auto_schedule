@@ -2,11 +2,11 @@
 /* @var $this TrxPengajarWaktuController */
 /* @var $model TrxPengajarWaktu */
 
-$this->breadcrumbs=array(
-	'Waktu Pengajar'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
+//$this->breadcrumbs=array(
+//	'Waktu Pengajar'=>array('index'),
+//	$model->id=>array('view','id'=>$model->id),
+//	'Update',
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Waktu Pengajar', 'url'=>array('index')),

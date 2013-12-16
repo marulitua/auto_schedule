@@ -14,9 +14,14 @@ import java.util.Comparator;
  */
 public class CustomComparator implements Comparator<Kurikulum> {
     
+//    @Override
+//    public int compare(Kurikulum o1, Kurikulum o2) {
+//        return o1.getOptionValue() > o2.getOptionValue() ? 1 : o1.getOptionValue() < o2.getOptionValue() ? -1 : 0; //To change body of generated methods, choose Tools | Templates.
+//    }
+    
     @Override
     public int compare(Kurikulum o1, Kurikulum o2) {
-        return o1.getOptionValue() > o2.getOptionValue() ? 1 : o1.getOptionValue() < o2.getOptionValue() ? -1 : 0; //To change body of generated methods, choose Tools | Templates.
+        return o1.getSolutionSpace().size() > o2.getSolutionSpace().size() ? 1 : o1.getSolutionSpace().size() < o2.getSolutionSpace().size() ? -1 : 0; //To change body of generated methods, choose Tools | Templates.
     }
     
 }

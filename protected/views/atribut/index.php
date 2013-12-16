@@ -2,9 +2,9 @@
 /* @var $this AtributController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
-	'Atribut',
-);
+//$this->breadcrumbs=array(
+//	'Atribut',
+//);
 
 $this->menu=array(
 	array('label'=>'Tambah Atribut', 'url'=>array('create')),

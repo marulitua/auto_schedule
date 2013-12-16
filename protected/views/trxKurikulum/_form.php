@@ -8,6 +8,9 @@ $cs->registerCssFile(Yii::app()->baseUrl. '/css/select2.css');
 $cs->registerScriptFile(Yii::app()->baseUrl. '/js/select2.min.js');
 
 Yii::app()->clientScript->registerScript('search', "
+//mata kuliah
+$('#TrxKurikulum_mata_kuliah_id').select2();
+
 //Hari
 $('#TrxKurikulum_hari').select2();
 $('#TrxKurikulum_hari').select2('val', [".TrxHariKurikulum::model()->preLoaded($model->id)."]);
@@ -36,11 +39,6 @@ $('#TrxKurikulum_isRuang').click(function(){
 ");
 
 ?>
-
-<script type="text/javascript">
-    
-    
-</script>
 
 <div class="form">
 

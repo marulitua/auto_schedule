@@ -2,10 +2,10 @@
 /* @var $this MataKuliahController */
 /* @var $model MataKuliah */
 
-$this->breadcrumbs=array(
-	'Mata Kuliah'=>array('admin'),
-	$model->id,
-);
+//$this->breadcrumbs=array(
+//	'Mata Kuliah'=>array('admin'),
+//	$model->id,
+//);
 
 $this->menu=array(
 	array('label'=>'Daftar Mata Kuliah', 'url'=>array('index')),
